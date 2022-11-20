@@ -3,18 +3,24 @@ import java.io.File;
 import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
+import biblioteca.AlunoVet;
 import biblioteca.ManipulaArquivo;
 
 public class App {
     static Scanner in = new Scanner(System.in);
     static File bancoProfessores = new File("./professores.csv");
+    static File bancoAlunos = new File("./alunos.csv");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
+        AlunoVet alunos = new AlunoVet();
         if (bancoProfessores.exists()) {
             professores.ler(
-                    professores.getProfessores(),
                     ManipulaArquivo.leitor("./professores.csv"));
+        }
+        if (bancoAlunos.exists()) {
+            professores.ler(
+                    ManipulaArquivo.leitor("./alunos.csv"));
         }
 
         int escPrincipal = -1;
@@ -48,6 +54,8 @@ public class App {
                     continue;
                 } else if (escCadastros == 1) {
                     professores.cadastrar();
+                } else if (escCadastros == 2) {
+                    alunos.cadastrar();
                 }
             }
 

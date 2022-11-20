@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProfessorVet {
-    private ArrayList<Professor> professores = new ArrayList<Professor>();
+public class AlunoVet {
+    private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
     Scanner in = new Scanner(System.in);
 
     public void ler(List<String> linhas) {
@@ -17,13 +17,14 @@ public class ProfessorVet {
             linha = linhas.get(i);
             if (!linha.isEmpty()) {
                 valorComSplit = linha.split(";");
-                this.professores.add(
-                        new Professor(
+                this.alunos.add(
+                        new Aluno(
                                 Integer.parseInt(valorComSplit[0]),
                                 valorComSplit[1],
                                 valorComSplit[2],
                                 valorComSplit[3],
-                                valorComSplit[4]));
+                                valorComSplit[4],
+                                Double.parseDouble(valorComSplit[5])));
             }
         }
     }
@@ -33,43 +34,48 @@ public class ProfessorVet {
         String nome;
         String end;
         String dataIngresso;
-        String setor;
+        String curso;
+        double multa = 0;
         String profString = "";
 
-        System.out.println("Digite a matrícula do professor:");
+        System.out.println("Digite a matrícula do aluno:");
         matricula = in.nextInt();
 
-        System.out.println("Digite o nome do professor:");
+        System.out.println("Digite o nome do aluno:");
         in.nextLine();
         nome = in.nextLine();
 
-        System.out.println("Digite endereço do professor:");
+        System.out.println("Digite endereço do aluno:");
         end = in.nextLine();
 
-        System.out.println("Digite data de ingresso do professor (dd/mm/aaaa):");
+        System.out.println("Digite data de ingresso do aluno (dd/mm/aaaa):");
         dataIngresso = in.next();
 
-        System.out.println("Digite o setor do professor:");
+        System.out.println("Digite o curso do aluno:");
         in.nextLine();
-        setor = in.nextLine();
+        curso = in.nextLine();
 
-        this.professores.add(new Professor(
+        System.out.println("Digite a multa do aluno:");
+        matricula = in.nextInt();
+
+        this.alunos.add(new Aluno(
                 matricula,
                 nome,
                 end,
                 dataIngresso,
-                setor));
+                curso,
+                multa));
 
-        for (int i = 0; i < this.professores.size(); i++) {
-            profString += this.professores.get(i).toString() + "\n";
+        for (int i = 0; i < this.alunos.size(); i++) {
+            profString += this.alunos.get(i).toString() + "\n";
         }
 
-        ManipulaArquivo.escritor("./professores.csv", profString);
+        ManipulaArquivo.escritor("./alunos.csv", profString);
 
-        System.out.println("Professor cadastrado com sucesso!");
+        System.out.println("Aluno cadastrado com sucesso!");
     }
 
-    public ArrayList<Professor> getProfessores() {
-        return this.professores;
+    public ArrayList<Aluno> getProfessores() {
+        return this.alunos;
     }
 }
