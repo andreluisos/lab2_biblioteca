@@ -56,7 +56,7 @@ public class AlunoVet {
         curso = in.nextLine();
 
         System.out.println("Digite a multa do aluno:");
-        matricula = in.nextInt();
+        multa = in.nextDouble();
 
         this.alunos.add(new Aluno(
                 matricula,
