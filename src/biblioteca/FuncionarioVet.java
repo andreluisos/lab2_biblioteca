@@ -38,7 +38,7 @@ public class FuncionarioVet {
         String setor;
         String login;
         String senha;
-    
+
         String profString = "";
 
         System.out.println("Digite a matrícula do funcionário:");
@@ -84,5 +84,34 @@ public class FuncionarioVet {
 
     public ArrayList<Funcionario> getFuncionarios() {
         return this.funcionarios;
+    }
+
+    public boolean login() {
+        String login;
+        String senha;
+        boolean autenticar = false;
+
+        while (true) {
+            System.out.println("Digite o login do funcionário:");
+            login = in.nextLine();
+
+            for (int i = 0; i < this.funcionarios.size(); i++) {
+                if (this.funcionarios.get(i).getNome().equals(login)) {
+                    System.out.println("Digite o senha do funcionário:");
+                    senha = in.nextLine();
+                    if (this.funcionarios.get(i).getSenha().equals(senha)) {
+                        autenticar = true;
+                    }
+                }
+            }
+            break;
+        }
+
+        if (autenticar) {
+            System.out.println("Autenticado!");
+            return true;
+        }
+        System.out.println("Autenticação recusada!");
+        return false;
     }
 }

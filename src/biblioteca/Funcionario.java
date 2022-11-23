@@ -78,7 +78,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return ";" + matricula
+        return matricula
                 + ";" + nome
                 + ";" + end
                 + ";" + dataIngresso

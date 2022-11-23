@@ -39,12 +39,30 @@ public class App {
         }
 
         int escPrincipal = -1;
-        int escCadastros = -1;
-        int escEmprestimos = -1;
+        int escSecundaria = -1;
 
         while (escPrincipal != 0) {
 
             if (escPrincipal == -1) {
+                System.out.println("INÍCIO\n" +
+                        "1- LOGIN\n" +
+                        "2- CADASTRAR NOVO FUNCIONÁRIO\n" +
+                        "0- SAIR");
+                escPrincipal = in.nextInt();
+                if (escPrincipal == 0) {
+                    continue;
+                } else if (escPrincipal == 1) {
+                    if (funcionarios.login()) {
+                        escPrincipal = 1;
+                    } else {
+                        escPrincipal = -1;
+                    };
+                } else if (escPrincipal == 2) {
+                    funcionarios.cadastrar();
+                }
+            }
+
+            if (escPrincipal == 1) {
                 System.out.println("MENU PRINCIPAL\n" +
                         "1- CADASTRAR\n" +
                         "2- EMPRÉSTIMO\n" +
@@ -55,25 +73,24 @@ public class App {
                 escPrincipal = in.nextInt();
             }
 
-            if (escPrincipal == 1) {
+            if (escPrincipal == 2) {
                 System.out.println("MENU DE CADASTROS\n" +
                         "1- CADASTRAR PROFESSOR\n" +
                         "2- CADASTRAR ALUNO\n" +
-                        "3- CADASTRAR FUNCIONÁRIO\n" +
                         "4- CADASTRAR PERIÓDICO\n" +
                         "5- CADASTRAR LIVRO\n" +
                         "0- VOLTAR AO MENU PRINCIPAL");
-                escCadastros = in.nextInt();
-                if (escCadastros == 0) {
-                    escPrincipal = -1;
+                escSecundaria = in.nextInt();
+                if (escSecundaria == 0) {
+                    escPrincipal = 1;
                     continue;
-                } else if (escCadastros == 1) {
+                } else if (escSecundaria == 1) {
                     professores.cadastrar();
-                } else if (escCadastros == 2) {
+                } else if (escSecundaria == 2) {
                     alunos.cadastrar();
-                } else if (escCadastros == 3) {
+                } else if (escSecundaria == 3) {
                     funcionarios.cadastrar();
-                } else if (escCadastros == 4) {
+                } else if (escSecundaria == 4) {
                     periodicos.cadastrar();
                 }
             }
@@ -86,11 +103,11 @@ public class App {
                         "4- ALUNOS CADASTRADOS\n" +
                         "5- IMPRIMIR MULTA INDIVIDUAL\n" +
                         "0- VOLTAR AO MENU PRINCIPAL");
-                escEmprestimos = in.nextInt();
-                if (escEmprestimos == 0) {
-                    escPrincipal = -1;
+                escSecundaria = in.nextInt();
+                if (escSecundaria == 0) {
+                    escPrincipal = 1;
                     continue;
-                } else if (escEmprestimos == 2) {
+                } else if (escSecundaria == 2) {
                     System.out.println("Imprimento empréstimos realizados");
                 }
             }
