@@ -63,16 +63,16 @@ public class LivroVet {
         issn = in.nextInt();
 
         this.livros.add(new Livro(
-            codigo,
-            autores,
-            titulo,
-            editora,
-            tipo,
-            ano,
-            issn));
+                codigo,
+                autores,
+                titulo,
+                editora,
+                tipo,
+                ano,
+                issn));
 
         for (int i = 0; i < this.livros.size(); i++) {
-            profString += this.livros.get(i).toString() + "\n";
+            profString += this.livros.get(i).toDatabase() + "\n";
         }
 
         ManipulaArquivo.escritor("./livros.csv", profString);

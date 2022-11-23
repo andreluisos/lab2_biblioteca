@@ -76,6 +76,16 @@ public class Funcionario {
         this.senha = senha;
     }
 
+    public String toDatabase() {
+        return matricula
+                + ";" + nome
+                + ";" + end
+                + ";" + dataIngresso
+                + ";" + setor
+                + ";" + login
+                + ";" + senha;
+    }
+
     @Override
     public String toString() {
         return matricula

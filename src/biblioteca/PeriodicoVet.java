@@ -58,15 +58,15 @@ public class PeriodicoVet {
         issn = in.nextInt();
 
         this.periodicos.add(new Periodico(
-            codigo,
-            autores,
-            titulo,
-            tipo,
-            fatorImpacto,
-            issn));
+                codigo,
+                autores,
+                titulo,
+                tipo,
+                fatorImpacto,
+                issn));
 
         for (int i = 0; i < this.periodicos.size(); i++) {
-            profString += this.periodicos.get(i).toString() + "\n";
+            profString += this.periodicos.get(i).toDatabase() + "\n";
         }
 
         ManipulaArquivo.escritor("./periodicos.csv", profString);

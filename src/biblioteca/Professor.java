@@ -55,6 +55,14 @@ public class Professor {
         this.setor = setor;
     }
 
+    public String toDatabase() {
+        return matricula
+                + ";" + nome
+                + ";" + end
+                + ";" + dataIngresso
+                + ";" + setor;
+    }
+
     @Override
     public String toString() {
         return matricula

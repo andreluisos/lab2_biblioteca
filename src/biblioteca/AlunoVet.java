@@ -67,7 +67,7 @@ public class AlunoVet {
                 multa));
 
         for (int i = 0; i < this.alunos.size(); i++) {
-            profString += this.alunos.get(i).toString() + "\n";
+            profString += this.alunos.get(i).toDatabase() + "\n";
         }
 
         ManipulaArquivo.escritor("./alunos.csv", profString);

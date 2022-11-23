@@ -61,7 +61,7 @@ public class ProfessorVet {
                 setor));
 
         for (int i = 0; i < this.professores.size(); i++) {
-            profString += this.professores.get(i).toString() + "\n";
+            profString += this.professores.get(i).toDatabase() + "\n";
         }
 
         ManipulaArquivo.escritor("./professores.csv", profString);

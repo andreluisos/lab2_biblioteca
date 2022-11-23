@@ -65,6 +65,15 @@ public class Periodico {
         this.issn = issn;
     }
 
+    public String toDatabase() {
+        return codigo
+                + ";" + autores
+                + ";" + titulo
+                + ";" + tipo
+                + ";" + fatorImpacto
+                + ";" + issn;
+    }
+
     @Override
     public String toString() {
         return codigo

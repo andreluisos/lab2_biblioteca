@@ -74,7 +74,7 @@ public class FuncionarioVet {
                 senha));
 
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            profString += this.funcionarios.get(i).toString() + "\n";
+            profString += this.funcionarios.get(i).toDatabase() + "\n";
         }
 
         ManipulaArquivo.escritor("./funcionarios.csv", profString);

@@ -56,6 +56,14 @@ public class Emprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public String toDatabase() {
+        return codigo
+                + ";" + matriculaCliente
+                + ";" + matriculaFuncionario
+                + ";" + dataEmprestimo
+                + ";" + dataDevolucao;
+    }
+
     @Override
     public String toString() {
         return codigo

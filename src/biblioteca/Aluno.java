@@ -65,11 +65,23 @@ public class Aluno {
         this.multa = multa;
     }
 
+    public String toDatabase() {
+        return matricula
+                + ";" + nome
+                + ";" + end
+                + ";" + curso
+                + ";" + dataIngresso
+                + ";" + multa;
+    }
+
     @Override
     public String toString() {
         return matricula
-                + ";" + nome + ";" + end + ";" + curso
-                + ";" + dataIngresso + ";" + multa;
+                + ";" + nome
+                + ";" + end
+                + ";" + curso
+                + ";" + dataIngresso
+                + ";" + multa;
     }
 
 }

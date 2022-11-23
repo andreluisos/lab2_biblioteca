@@ -56,6 +56,14 @@ public class ItemEmprestimo {
         this.dataDevolucao = dataDevolucao;
     }
 
+    public String toDatabase() {
+        return codigoItem
+                + ";" + codigoEmprestimo
+                + ";" + codigoLivro
+                + ";" + codigoPeriodico
+                + ";" + dataDevolucao;
+    }
+
     @Override
     public String toString() {
         return codigoItem

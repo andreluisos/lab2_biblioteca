@@ -75,6 +75,16 @@ public class Livro {
         this.issn = issn;
     }
 
+    public String toDatabase() {
+        return codigo
+                + ";" + autores
+                + ";" + titulo
+                + ";" + editora
+                + ";" + tipo
+                + ";" + ano
+                + ";" + issn;
+    }
+
     @Override
     public String toString() {
         return codigo
