@@ -5,6 +5,7 @@ import java.util.Scanner;
 import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
 import biblioteca.FuncionarioVet;
+import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
 
@@ -20,6 +21,7 @@ public class App {
         AlunoVet alunos = new AlunoVet();
         FuncionarioVet funcionarios = new FuncionarioVet();
         PeriodicoVet periodicos = new PeriodicoVet();
+        LivroVet livros = new LivroVet();
 
         if (bancoProfessores.exists()) {
             professores.ler(
@@ -67,8 +69,7 @@ public class App {
                         "1- CADASTRAR\n" +
                         "2- EMPRÉSTIMO\n" +
                         "3- DEVOLUÇÃO\n" +
-                        "4- AUTENTICAR USUÁRIO\n" +
-                        "5- RELATÓRIO\n" +
+                        "4- RELATÓRIO\n" +
                         "0- SAIR");
                 escPrincipal = in.nextInt();
             }
@@ -89,9 +90,9 @@ public class App {
                 } else if (escSecundaria == 2) {
                     alunos.cadastrar();
                 } else if (escSecundaria == 3) {
-                    funcionarios.cadastrar();
-                } else if (escSecundaria == 4) {
                     periodicos.cadastrar();
+                } else if (escSecundaria == 3) {
+                    livros.cadastrar();
                 }
             }
 
