@@ -1,2 +1,5 @@
 .vscode
 *.csv
+*.class
+bin/
+bin/*

@@ -4,16 +4,23 @@ import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
+import biblioteca.FuncionarioVet;
 import biblioteca.ManipulaArquivo;
+import biblioteca.PeriodicoVet;
 
 public class App {
     static Scanner in = new Scanner(System.in);
     static File bancoProfessores = new File("./professores.csv");
     static File bancoAlunos = new File("./alunos.csv");
+    static File bancoFuncionarios = new File("./funcionarios.csv");
+    static File bancoPeriodicos = new File("./periodicos.csv");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
         AlunoVet alunos = new AlunoVet();
+        FuncionarioVet funcionarios = new FuncionarioVet();
+        PeriodicoVet periodicos = new PeriodicoVet();
+
         if (bancoProfessores.exists()) {
             professores.ler(
                     ManipulaArquivo.leitor("./professores.csv"));
@@ -21,6 +28,14 @@ public class App {
         if (bancoAlunos.exists()) {
             professores.ler(
                     ManipulaArquivo.leitor("./alunos.csv"));
+        }
+        if (bancoFuncionarios.exists()) {
+            funcionarios.ler(
+                    ManipulaArquivo.leitor("./funcionarios.csv"));
+        }
+        if (bancoPeriodicos.exists()) {
+            periodicos.ler(
+                    ManipulaArquivo.leitor("./periodicos.csv"));
         }
 
         int escPrincipal = -1;
@@ -56,6 +71,10 @@ public class App {
                     professores.cadastrar();
                 } else if (escCadastros == 2) {
                     alunos.cadastrar();
+                } else if (escCadastros == 3) {
+                    funcionarios.cadastrar();
+                } else if (escCadastros == 4) {
+                    periodicos.cadastrar();
                 }
             }
 
