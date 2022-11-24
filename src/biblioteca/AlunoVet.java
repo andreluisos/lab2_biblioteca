@@ -75,7 +75,7 @@ public class AlunoVet {
         System.out.println("Aluno cadastrado com sucesso!");
     }
 
-    public ArrayList<Aluno> getProfessores() {
+    public ArrayList<Aluno> getAlunos() {
         return this.alunos;
     }
 }

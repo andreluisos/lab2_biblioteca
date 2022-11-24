@@ -48,81 +48,102 @@ public class App {
                     ManipulaArquivo.leitor("./periodicos.csv"));
         }
 
+        boolean loggedIn = false;
         int escPrincipal = -1;
         int escSecundaria = -1;
         int codigoFuncionario = 0;
 
-        while (escPrincipal != 0) {
+        while (true) {
 
-            if (escPrincipal == -1) {
+            if (!loggedIn) {
                 System.out.println("INÍCIO\n" +
                         "1- LOGIN\n" +
                         "2- CADASTRAR NOVO FUNCIONÁRIO\n" +
                         "0- SAIR");
                 escPrincipal = in.nextInt();
                 if (escPrincipal == 0) {
-                    continue;
+                    break;
                 } else if (escPrincipal == 1) {
                     codigoFuncionario = funcionarios.login();
                     if (codigoFuncionario >= 0) {
-                        escPrincipal = 1;
+                        loggedIn = true;
                     } else {
-                        escPrincipal = -1;
-                    };
+                        loggedIn = false;
+                    }
+                    ;
                 } else if (escPrincipal == 2) {
                     funcionarios.cadastrar();
                 }
+                escPrincipal = -1;
             }
 
-            if (escPrincipal == 1) {
-                System.out.println("MENU PRINCIPAL\n" +
-                        "1- CADASTRAR\n" +
-                        "2- EMPRÉSTIMO\n" +
-                        "3- DEVOLUÇÃO\n" +
-                        "4- RELATÓRIO\n" +
-                        "0- SAIR");
-                escPrincipal = in.nextInt();
-            }
-
-            if (escPrincipal == 2) {
-                System.out.println("MENU DE CADASTROS\n" +
-                        "1- CADASTRAR PROFESSOR\n" +
-                        "2- CADASTRAR ALUNO\n" +
-                        "4- CADASTRAR PERIÓDICO\n" +
-                        "5- CADASTRAR LIVRO\n" +
-                        "0- VOLTAR AO MENU PRINCIPAL");
-                escSecundaria = in.nextInt();
-                if (escSecundaria == 0) {
-                    escPrincipal = 1;
-                    continue;
-                } else if (escSecundaria == 1) {
-                    professores.cadastrar();
-                } else if (escSecundaria == 2) {
-                    alunos.cadastrar();
-                } else if (escSecundaria == 3) {
-                    periodicos.cadastrar();
-                } else if (escSecundaria == 4) {
-                    livros.cadastrar();
-                } else if (escSecundaria == 4) {
-                    emprestimos.cadastrar(codigoFuncionario);
+            if (loggedIn) {
+                if (escPrincipal == -1) {
+                    System.out.println("MENU PRINCIPAL\n" +
+                            "1- CADASTRAR\n" +
+                            "2- EMPRÉSTIMO\n" +
+                            "3- DEVOLUÇÃO\n" +
+                            "4- RELATÓRIOS\n" +
+                            "0- SAIR");
+                    escPrincipal = in.nextInt();
                 }
-            }
 
-            if (escPrincipal == 2) {
-                System.out.println("MENU DE EMPRÉSTIMOS\n" +
-                        "1- LIVROS CADASTRADOS\n" +
-                        "2- EMPRÉSTIMOS REALIZADOS\n" +
-                        "3- FUNCIONÁRIOS CADASTRADOS\n" +
-                        "4- ALUNOS CADASTRADOS\n" +
-                        "5- IMPRIMIR MULTA INDIVIDUAL\n" +
-                        "0- VOLTAR AO MENU PRINCIPAL");
-                escSecundaria = in.nextInt();
-                if (escSecundaria == 0) {
-                    escPrincipal = 1;
-                    continue;
-                } else if (escSecundaria == 2) {
-                    System.out.println("Imprimento empréstimos realizados");
+                if (escPrincipal == 0) {
+                    break;
                 }
+
+                if (escPrincipal == 1) {
+                    System.out.println("MENU DE CADASTROS\n" +
+                            "1- CADASTRAR PROFESSOR\n" +
+                            "2- CADASTRAR ALUNO\n" +
+                            "3- CADASTRAR PERIÓDICO\n" +
+                            "4- CADASTRAR LIVRO\n" +
+                            "0- VOLTAR AO MENU PRINCIPAL");
+                    escSecundaria = in.nextInt();
+                    if (escSecundaria == 0) {
+                        escPrincipal = -1;
+                        continue;
+                    } else if (escSecundaria == 1) {
+                        professores.cadastrar();
+                    } else if (escSecundaria == 2) {
+                        alunos.cadastrar();
+                    } else if (escSecundaria == 3) {
+                        periodicos.cadastrar();
+                    } else if (escSecundaria == 4) {
+                        livros.cadastrar();
+                    }
+                }
+
+                if (escPrincipal == 2) {
+                    if (professores.getProfessores().size() == 0 &&
+                            alunos.getAlunos().size() == 0 &&
+                            periodicos.getPeriodicos().size() == 0 &&
+                            livros.getLivros().size() == 0) {
+                        System.out.print("Não há cadastros de items ou usuários no banco de dados!");
+                    } else {
+                        emprestimos.cadastrar(codigoFuncionario);
+                    }
+                    escPrincipal = 1;
+                }
+
+                if (escPrincipal == 4) {
+                    System.out.println("MENU DE RELATÓRIOS\n" +
+                            "1- LIVROS CADASTRADOS\n" +
+                            "2- EMPRÉSTIMOS REALIZADOS\n" +
+                            "3- FUNCIONÁRIOS CADASTRADOS\n" +
+                            "4- ALUNOS CADASTRADOS\n" +
+                            "5- IMPRIMIR MULTA INDIVIDUAL\n" +
+                            "0- VOLTAR AO MENU PRINCIPAL");
+                    escSecundaria = in.nextInt();
+                    if (escSecundaria == 0) {
+                        escPrincipal = -1;
+                        continue;
+                    } else if (escSecundaria == 1) {
+                        System.out.println("Imprimento empréstimos realizados");
+                    } else if (escSecundaria == 2) {
+                        System.out.println("Imprimento empréstimos realizados");
+                    }
+                }                
             }
         }
         in.close();

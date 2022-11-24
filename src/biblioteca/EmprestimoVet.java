@@ -43,6 +43,7 @@ public class EmprestimoVet {
         matriculaCliente = in.nextInt();
 
         System.out.println("Digite a data do empréstimo:");
+        in.nextLine();
         dataEmprestimo = in.nextLine();
 
         System.out.println("Digite a data da devolução:");
@@ -59,9 +60,9 @@ public class EmprestimoVet {
             dbString += this.emprestimos.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./funcionarios.csv", dbString);
+        ManipulaArquivo.escritor("./emprestimos.csv", dbString);
 
-        System.out.println("Funcionario cadastrado com sucesso!");
+        System.out.println("Empréstimo cadastrado com sucesso!");
     }
 
     public ArrayList<Emprestimo> getEmprestimos() {
