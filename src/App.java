@@ -1,3 +1,4 @@
+//TODO: Aparentemente, não está lendo do banco de dados corretamente.
 import java.io.File;
 
 import java.util.Scanner;
@@ -75,9 +76,7 @@ public class App {
                     funcionarios.cadastrar();
                 }
                 escPrincipal = -1;
-            }
-
-            if (loggedIn) {
+            } else {
                 if (escPrincipal == -1) {
                     System.out.println("MENU PRINCIPAL\n" +
                             "1- CADASTRAR\n" +
@@ -128,20 +127,43 @@ public class App {
 
                 if (escPrincipal == 4) {
                     System.out.println("MENU DE RELATÓRIOS\n" +
-                            "1- LIVROS CADASTRADOS\n" +
-                            "2- EMPRÉSTIMOS REALIZADOS\n" +
+                            "1- ALUNOS CADASTRADOS\n" +
+                            "2- PROFESSORES CADASTRADOS\n" +
                             "3- FUNCIONÁRIOS CADASTRADOS\n" +
-                            "4- ALUNOS CADASTRADOS\n" +
-                            "5- IMPRIMIR MULTA INDIVIDUAL\n" +
+                            "4- LIVROS CADASTRADOS\n" +
+                            "5- PERIÓDICOS CADASTRADOS\n" +
+                            "6- EMPRÉSTIMOS REALIZADOS\n" +
+                            "7- CONSULTAR MULTA INDIVIDUAL\n" +
                             "0- VOLTAR AO MENU PRINCIPAL");
                     escSecundaria = in.nextInt();
                     if (escSecundaria == 0) {
                         escPrincipal = -1;
                         continue;
                     } else if (escSecundaria == 1) {
-                        System.out.println("Imprimento empréstimos realizados");
+                        for (int i = 0; i < alunos.getAlunos().size(); i++) {
+                            System.out.print(alunos.getAlunos().get(i));
+                            System.out.println(alunos.getAlunos().get(i).toString());
+                        }
                     } else if (escSecundaria == 2) {
-                        System.out.println("Imprimento empréstimos realizados");
+                        for (int i = 0; i < professores.getProfessores().size(); i++) {
+                            System.out.println(professores.getProfessores().get(i).toString());
+                        }
+                    } else if (escSecundaria == 3) {
+                        for (int i = 0; i < funcionarios.getFuncionarios().size(); i++) {
+                            System.out.println(funcionarios.getFuncionarios().get(i).toString());
+                        }
+                    } else if (escSecundaria == 4) {
+                        for (int i = 0; i < livros.getLivros().size(); i++) {
+                            System.out.println(livros.getLivros().get(i).toString());
+                        }
+                    } else if (escSecundaria == 5) {
+                        for (int i = 0; i < periodicos.getPeriodicos().size(); i++) {
+                            System.out.println(periodicos.getPeriodicos().get(i).toString());
+                        }
+                    } else if (escSecundaria == 6) {
+                        for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
+                            System.out.println(emprestimos.getEmprestimos().get(i).toString());
+                        }
                     }
                 }                
             }
