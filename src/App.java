@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
+import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
@@ -15,6 +16,8 @@ public class App {
     static File bancoAlunos = new File("./alunos.csv");
     static File bancoFuncionarios = new File("./funcionarios.csv");
     static File bancoPeriodicos = new File("./periodicos.csv");
+    static File bancoLivros = new File("./livros.csv");
+    static File bancoEmprestimos = new File("./emprestimos.csv");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
@@ -22,6 +25,7 @@ public class App {
         FuncionarioVet funcionarios = new FuncionarioVet();
         PeriodicoVet periodicos = new PeriodicoVet();
         LivroVet livros = new LivroVet();
+        EmprestimoVet emprestimos = new EmprestimoVet();
 
         if (bancoProfessores.exists()) {
             professores.ler(
@@ -39,9 +43,14 @@ public class App {
             periodicos.ler(
                     ManipulaArquivo.leitor("./periodicos.csv"));
         }
+        if (bancoEmprestimos.exists()) {
+            emprestimos.ler(
+                    ManipulaArquivo.leitor("./periodicos.csv"));
+        }
 
         int escPrincipal = -1;
         int escSecundaria = -1;
+        int codigoFuncionario = 0;
 
         while (escPrincipal != 0) {
 
@@ -54,7 +63,8 @@ public class App {
                 if (escPrincipal == 0) {
                     continue;
                 } else if (escPrincipal == 1) {
-                    if (funcionarios.login()) {
+                    codigoFuncionario = funcionarios.login();
+                    if (codigoFuncionario >= 0) {
                         escPrincipal = 1;
                     } else {
                         escPrincipal = -1;
@@ -91,8 +101,10 @@ public class App {
                     alunos.cadastrar();
                 } else if (escSecundaria == 3) {
                     periodicos.cadastrar();
-                } else if (escSecundaria == 3) {
+                } else if (escSecundaria == 4) {
                     livros.cadastrar();
+                } else if (escSecundaria == 4) {
+                    emprestimos.cadastrar(codigoFuncionario);
                 }
             }
 

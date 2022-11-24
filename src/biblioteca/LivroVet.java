@@ -38,7 +38,7 @@ public class LivroVet {
         char tipo;
         String ano;
         int issn;
-        String profString = "";
+        String dbString = "";
 
         System.out.println("Digite o código do livro:");
         codigo = in.nextInt();
@@ -72,10 +72,10 @@ public class LivroVet {
                 issn));
 
         for (int i = 0; i < this.livros.size(); i++) {
-            profString += this.livros.get(i).toDatabase() + "\n";
+            dbString += this.livros.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./livros.csv", profString);
+        ManipulaArquivo.escritor("./livros.csv", dbString);
 
         System.out.println("Livro cadastrado com sucesso!");
     }

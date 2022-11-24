@@ -36,7 +36,7 @@ public class PeriodicoVet {
         char tipo;
         int fatorImpacto;
         int issn;
-        String profString = "";
+        String dbString = "";
 
         System.out.println("Digite o código do periódico:");
         codigo = in.nextInt();
@@ -66,10 +66,10 @@ public class PeriodicoVet {
                 issn));
 
         for (int i = 0; i < this.periodicos.size(); i++) {
-            profString += this.periodicos.get(i).toDatabase() + "\n";
+            dbString += this.periodicos.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./periodicos.csv", profString);
+        ManipulaArquivo.escritor("./periodicos.csv", dbString);
 
         System.out.println("Periódico cadastrado com sucesso!");
     }

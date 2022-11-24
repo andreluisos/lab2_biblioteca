@@ -39,7 +39,7 @@ public class FuncionarioVet {
         String login;
         String senha;
 
-        String profString = "";
+        String dbString = "";
 
         System.out.println("Digite a matrícula do funcionário:");
         matricula = in.nextInt();
@@ -74,10 +74,10 @@ public class FuncionarioVet {
                 senha));
 
         for (int i = 0; i < this.funcionarios.size(); i++) {
-            profString += this.funcionarios.get(i).toDatabase() + "\n";
+            dbString += this.funcionarios.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./funcionarios.csv", profString);
+        ManipulaArquivo.escritor("./funcionarios.csv", dbString);
 
         System.out.println("Funcionario cadastrado com sucesso!");
     }
@@ -86,10 +86,10 @@ public class FuncionarioVet {
         return this.funcionarios;
     }
 
-    public boolean login() {
+    public int login() {
         String login;
         String senha;
-        boolean autenticar = false;
+        int autenticar = -1;
 
         while (true) {
             System.out.println("Digite o login do funcionário:");
@@ -100,18 +100,18 @@ public class FuncionarioVet {
                     System.out.println("Digite o senha do funcionário:");
                     senha = in.nextLine();
                     if (this.funcionarios.get(i).getSenha().equals(senha)) {
-                        autenticar = true;
+                        autenticar = this.funcionarios.get(i).getMatricula();
                     }
                 }
             }
             break;
         }
 
-        if (autenticar) {
+        if (autenticar >= 0) {
             System.out.println("Autenticado!");
-            return true;
+            return autenticar;
         }
         System.out.println("Autenticação recusada!");
-        return false;
+        return autenticar;
     }
 }

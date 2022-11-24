@@ -36,7 +36,7 @@ public class AlunoVet {
         String dataIngresso;
         String curso;
         double multa = 0;
-        String profString = "";
+        String dbString = "";
 
         System.out.println("Digite a matrícula do aluno:");
         matricula = in.nextInt();
@@ -67,10 +67,10 @@ public class AlunoVet {
                 multa));
 
         for (int i = 0; i < this.alunos.size(); i++) {
-            profString += this.alunos.get(i).toDatabase() + "\n";
+            dbString += this.alunos.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./alunos.csv", profString);
+        ManipulaArquivo.escritor("./alunos.csv", dbString);
 
         System.out.println("Aluno cadastrado com sucesso!");
     }

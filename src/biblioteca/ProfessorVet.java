@@ -34,7 +34,7 @@ public class ProfessorVet {
         String end;
         String dataIngresso;
         String setor;
-        String profString = "";
+        String dbString = "";
 
         System.out.println("Digite a matrícula do professor:");
         matricula = in.nextInt();
@@ -61,10 +61,10 @@ public class ProfessorVet {
                 setor));
 
         for (int i = 0; i < this.professores.size(); i++) {
-            profString += this.professores.get(i).toDatabase() + "\n";
+            dbString += this.professores.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./professores.csv", profString);
+        ManipulaArquivo.escritor("./professores.csv", dbString);
 
         System.out.println("Professor cadastrado com sucesso!");
     }
