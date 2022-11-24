@@ -87,12 +87,8 @@ public class Livro {
 
     @Override
     public String toString() {
-        return codigo
-                + ";" + autores
-                + ";" + titulo
-                + ";" + editora
-                + ";" + tipo
-                + ";" + ano
-                + ";" + issn;
+        return "Livro [codigo=" + codigo + ", autores=" + autores + ", titulo=" + titulo + ", editora=" + editora
+                + ", tipo=" + tipo + ", ano=" + ano + ", issn=" + issn + "]";
     }
+
 }

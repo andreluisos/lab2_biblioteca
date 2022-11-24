@@ -65,11 +65,8 @@ public class Professor {
 
     @Override
     public String toString() {
-        return matricula
-                + ";" + nome
-                + ";" + end
-                + ";" + dataIngresso
-                + ";" + setor;
+        return "Professor [matricula=" + matricula + ", nome=" + nome + ", end=" + end + ", dataIngresso="
+                + dataIngresso + ", setor=" + setor + "]";
     }
 
 }

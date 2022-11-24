@@ -114,4 +114,10 @@ public class FuncionarioVet {
         System.out.println("Autenticação recusada!");
         return autenticar;
     }
+
+    public void relatar() {
+        for (int i = 0; i < this.funcionarios.size(); i++) {
+            System.out.println(this.funcionarios.get(i).toString());
+        }
+    }
 }

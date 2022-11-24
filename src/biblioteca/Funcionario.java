@@ -88,13 +88,8 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return matricula
-                + ";" + nome
-                + ";" + end
-                + ";" + dataIngresso
-                + ";" + setor
-                + ";" + login
-                + ";" + senha;
+        return "Funcionario [matricula=" + matricula + ", nome=" + nome + ", end=" + end + ", dataIngresso="
+                + dataIngresso + ", setor=" + setor + ", login=" + login + ", senha=" + senha + "]";
     }
 
 }

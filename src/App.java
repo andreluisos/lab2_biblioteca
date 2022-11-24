@@ -140,30 +140,17 @@ public class App {
                         escPrincipal = -1;
                         continue;
                     } else if (escSecundaria == 1) {
-                        for (int i = 0; i < alunos.getAlunos().size(); i++) {
-                            System.out.print(alunos.getAlunos().get(i));
-                            System.out.println(alunos.getAlunos().get(i).toString());
-                        }
+                        alunos.relatar();
                     } else if (escSecundaria == 2) {
-                        for (int i = 0; i < professores.getProfessores().size(); i++) {
-                            System.out.println(professores.getProfessores().get(i).toString());
-                        }
+                        professores.relatar();
                     } else if (escSecundaria == 3) {
-                        for (int i = 0; i < funcionarios.getFuncionarios().size(); i++) {
-                            System.out.println(funcionarios.getFuncionarios().get(i).toString());
-                        }
+                        funcionarios.relatar();
                     } else if (escSecundaria == 4) {
-                        for (int i = 0; i < livros.getLivros().size(); i++) {
-                            System.out.println(livros.getLivros().get(i).toString());
-                        }
+                        livros.relatar();
                     } else if (escSecundaria == 5) {
-                        for (int i = 0; i < periodicos.getPeriodicos().size(); i++) {
-                            System.out.println(periodicos.getPeriodicos().get(i).toString());
-                        }
+                        periodicos.relatar();
                     } else if (escSecundaria == 6) {
-                        for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
-                            System.out.println(emprestimos.getEmprestimos().get(i).toString());
-                        }
+                        emprestimos.relatar();
                     }
                 }                
             }

@@ -75,6 +75,12 @@ public class AlunoVet {
         System.out.println("Aluno cadastrado com sucesso!");
     }
 
+    public void relatar() {
+        for (int i = 0; i < this.alunos.size(); i++) {
+            System.out.println(this.alunos.get(i).toString());
+        }
+    }
+
     public ArrayList<Aluno> getAlunos() {
         return this.alunos;
     }

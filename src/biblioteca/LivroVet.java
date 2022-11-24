@@ -80,6 +80,12 @@ public class LivroVet {
         System.out.println("Livro cadastrado com sucesso!");
     }
 
+    public void relatar() {
+        for (int i = 0; i < this.livros.size(); i++) {
+            System.out.println(this.livros.get(i).toString());
+        }
+    }
+
     public ArrayList<Livro> getLivros() {
         return this.livros;
     }

@@ -26,6 +26,7 @@ public class ProfessorVet {
                                 valorComSplit[4]));
             }
         }
+        System.out.print(this.professores.toString());
     }
 
     public void cadastrar() throws IOException {
@@ -67,6 +68,12 @@ public class ProfessorVet {
         ManipulaArquivo.escritor("./professores.csv", dbString);
 
         System.out.println("Professor cadastrado com sucesso!");
+    }
+
+    public void relatar() {
+        for (int i = 0; i < this.professores.size(); i++) {
+            System.out.println(this.professores.get(i).toString());
+        }
     }
 
     public ArrayList<Professor> getProfessores() {

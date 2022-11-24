@@ -74,6 +74,12 @@ public class PeriodicoVet {
         System.out.println("Periódico cadastrado com sucesso!");
     }
 
+    public void relatar() {
+        for (int i = 0; i < this.periodicos.size(); i++) {
+            System.out.println(this.periodicos.get(i).toString());
+        }
+    }
+
     public ArrayList<Periodico> getPeriodicos() {
         return this.periodicos;
     }

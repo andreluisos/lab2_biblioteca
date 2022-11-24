@@ -76,11 +76,8 @@ public class Periodico {
 
     @Override
     public String toString() {
-        return codigo
-                + ";" + autores
-                + ";" + titulo
-                + ";" + tipo
-                + ";" + fatorImpacto
-                + ";" + issn;
+        return "Periodico [codigo=" + codigo + ", autores=" + autores + ", titulo=" + titulo + ", tipo=" + tipo
+                + ", fatorImpacto=" + fatorImpacto + ", issn=" + issn + "]";
     }
+
 }

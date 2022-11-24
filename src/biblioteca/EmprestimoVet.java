@@ -48,7 +48,7 @@ public class EmprestimoVet {
 
         System.out.println("Digite a data da devolução:");
         dataDevolucao = in.nextLine();
-        
+
         this.emprestimos.add(new Emprestimo(
                 codigo,
                 matriculaCliente,
@@ -63,6 +63,12 @@ public class EmprestimoVet {
         ManipulaArquivo.escritor("./emprestimos.csv", dbString);
 
         System.out.println("Empréstimo cadastrado com sucesso!");
+    }
+    
+    public void relatar() {
+        for (int i = 0; i < this.emprestimos.size(); i++) {
+            System.out.println(this.emprestimos.get(i).toString());
+        }
     }
 
     public ArrayList<Emprestimo> getEmprestimos() {
