@@ -29,7 +29,7 @@ public class AlunoVet {
         }
     }
 
-    public void cadastrar() throws IOException {
+    public void cadastrar(List<Professor> professores) throws IOException {
         int matricula;
         String nome;
         String end;
@@ -38,11 +38,17 @@ public class AlunoVet {
         double multa = 0;
         String dbString = "";
 
-        System.out.println("Digite a matrícula do aluno:");
-        matricula = in.nextInt();
+        if (professores.size() == 0 && this.alunos.size() == 0) {
+            matricula = 0;
+        } else {
+            if (professores.size() > this.alunos.size()) {
+                matricula = professores.get(professores.size() - 1).getMatricula() + 1;
+            } else {
+                matricula = this.alunos.get(this.alunos.size() - 1).getMatricula() + 1;
+            }
+        }
 
         System.out.println("Digite o nome do aluno:");
-        in.nextLine();
         nome = in.nextLine();
 
         System.out.println("Digite endereço do aluno:");
@@ -54,9 +60,6 @@ public class AlunoVet {
         System.out.println("Digite o curso do aluno:");
         in.nextLine();
         curso = in.nextLine();
-
-        System.out.println("Digite a multa do aluno:");
-        multa = in.nextDouble();
 
         this.alunos.add(new Aluno(
                 matricula,
@@ -73,6 +76,15 @@ public class AlunoVet {
         ManipulaArquivo.escritor("./alunos.csv", dbString);
 
         System.out.println("Aluno cadastrado com sucesso!");
+    }
+
+    public Aluno getAlunoByMatricula(int matricula) {
+        for (int i = 0; i < this.alunos.size(); i++) {
+            if (this.alunos.get(i).getMatricula() == matricula) {
+                return this.alunos.get(i);
+            }
+        }
+        return null;
     }
 
     public void relatar() {

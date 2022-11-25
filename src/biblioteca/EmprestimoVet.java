@@ -28,7 +28,7 @@ public class EmprestimoVet {
         }
     }
 
-    public void cadastrar(int funcionario) throws IOException {
+    public void cadastrar(int funcionario, List<Professor> professores, List<Aluno> alunos) throws IOException {
         int codigo;
         int matriculaCliente;
         int matriculaFuncionario = funcionario;
@@ -36,8 +36,11 @@ public class EmprestimoVet {
         String dataDevolucao;
         String dbString = "";
 
-        System.out.println("Digite código do empréstimo:");
-        codigo = in.nextInt();
+        if (this.emprestimos.size() == 0) {
+            codigo = 0;
+        } else {
+            codigo = this.emprestimos.get(this.emprestimos.size() - 1).getCodigo() + 1;
+        }
 
         System.out.println("Digite a matrícula do cliente:");
         matriculaCliente = in.nextInt();
@@ -63,6 +66,10 @@ public class EmprestimoVet {
         ManipulaArquivo.escritor("./emprestimos.csv", dbString);
 
         System.out.println("Empréstimo cadastrado com sucesso!");
+    }
+
+    public void devolução() {
+        
     }
     
     public void relatar() {

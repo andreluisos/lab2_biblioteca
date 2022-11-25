@@ -41,11 +41,13 @@ public class FuncionarioVet {
 
         String dbString = "";
 
-        System.out.println("Digite a matrícula do funcionário:");
-        matricula = in.nextInt();
+        if (this.funcionarios.size() == 0) {
+            matricula = 0;
+        } else {
+            matricula = this.funcionarios.get(this.funcionarios.size() - 1).getMatricula() + 1;
+        }
 
         System.out.println("Digite o nome do funcionário:");
-        in.nextLine();
         nome = in.nextLine();
 
         System.out.println("Digite endereço do funcionário:");
@@ -115,6 +117,14 @@ public class FuncionarioVet {
         return autenticar;
     }
 
+    public Funcionario getFuncionarioByMatricula(int matricula) {
+        for (int i = 0; i < this.funcionarios.size(); i++) {
+            if (this.funcionarios.get(i).getMatricula() == matricula) {
+                return this.funcionarios.get(i);
+            }
+        }
+        return null;
+    }
     public void relatar() {
         for (int i = 0; i < this.funcionarios.size(); i++) {
             System.out.println(this.funcionarios.get(i).toString());

@@ -1,12 +1,14 @@
-//TODO: Aparentemente, não está lendo do banco de dados corretamente.
 import java.io.File;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
+import biblioteca.ItemEmprestimoVet;
+import biblioteca.Livro;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
@@ -19,6 +21,7 @@ public class App {
     static File bancoPeriodicos = new File("./periodicos.csv");
     static File bancoLivros = new File("./livros.csv");
     static File bancoEmprestimos = new File("./emprestimos.csv");
+    static File bancoItemEmprestimos = new File("./itemEmprestimos.csv");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
@@ -27,18 +30,23 @@ public class App {
         PeriodicoVet periodicos = new PeriodicoVet();
         LivroVet livros = new LivroVet();
         EmprestimoVet emprestimos = new EmprestimoVet();
+        ItemEmprestimoVet itemEmprestimos = new ItemEmprestimoVet();
 
         if (bancoProfessores.exists()) {
             professores.ler(
                     ManipulaArquivo.leitor("./professores.csv"));
         }
         if (bancoAlunos.exists()) {
-            professores.ler(
+            alunos.ler(
                     ManipulaArquivo.leitor("./alunos.csv"));
         }
         if (bancoFuncionarios.exists()) {
             funcionarios.ler(
                     ManipulaArquivo.leitor("./funcionarios.csv"));
+        }
+        if (bancoLivros.exists()) {
+            livros.ler(
+                    ManipulaArquivo.leitor("./livros.csv"));
         }
         if (bancoPeriodicos.exists()) {
             periodicos.ler(
@@ -46,7 +54,11 @@ public class App {
         }
         if (bancoEmprestimos.exists()) {
             emprestimos.ler(
-                    ManipulaArquivo.leitor("./periodicos.csv"));
+                    ManipulaArquivo.leitor("./emprestimos.csv"));
+        }
+        if (bancoItemEmprestimos.exists()) {
+            itemEmprestimos.ler(
+                    ManipulaArquivo.leitor("./itemEmprestimos.csv"));
         }
 
         boolean loggedIn = false;
@@ -103,13 +115,13 @@ public class App {
                         escPrincipal = -1;
                         continue;
                     } else if (escSecundaria == 1) {
-                        professores.cadastrar();
+                        professores.cadastrar(alunos.getAlunos());
                     } else if (escSecundaria == 2) {
-                        alunos.cadastrar();
+                        alunos.cadastrar(professores.getProfessores());
                     } else if (escSecundaria == 3) {
-                        periodicos.cadastrar();
+                        periodicos.cadastrar(livros.getLivros());
                     } else if (escSecundaria == 4) {
-                        livros.cadastrar();
+                        livros.cadastrar(periodicos.getPeriodicos());
                     }
                 }
 
@@ -120,7 +132,23 @@ public class App {
                             livros.getLivros().size() == 0) {
                         System.out.print("Não há cadastros de items ou usuários no banco de dados!");
                     } else {
-                        emprestimos.cadastrar(codigoFuncionario);
+                        emprestimos.cadastrar(codigoFuncionario, professores.getProfessores(), alunos.getAlunos());
+                        itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(),
+                                emprestimos.getEmprestimos());
+                    }
+                    escPrincipal = 1;
+                }
+
+                if (escPrincipal == 3) {
+                    for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
+                        System.out.println("Código do empréstimo: " 
+                        + emprestimos.getEmprestimos().get(i).getCodigo() + "\n" 
+                        + "=========\n"
+                        + "\tFuncionário responsável: " + funcionarios.getFuncionarioByMatricula(
+                            emprestimos.getEmprestimos().get(i).getMatriculaFuncionario()).getNome() + "\n"
+                        + "\tData do empréstimo: " + emprestimos.getEmprestimos().get(i).getDataEmprestimo() + "\n"
+                        + "\tData da devolução: " + emprestimos.getEmprestimos().get(i).getDataDevolucao() + "\n"
+                        );                  
                     }
                     escPrincipal = 1;
                 }
@@ -152,7 +180,7 @@ public class App {
                     } else if (escSecundaria == 6) {
                         emprestimos.relatar();
                     }
-                }                
+                }
             }
         }
         in.close();

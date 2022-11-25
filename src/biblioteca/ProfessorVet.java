@@ -26,10 +26,9 @@ public class ProfessorVet {
                                 valorComSplit[4]));
             }
         }
-        System.out.print(this.professores.toString());
     }
 
-    public void cadastrar() throws IOException {
+    public void cadastrar(List<Aluno> alunos) throws IOException {
         int matricula;
         String nome;
         String end;
@@ -37,11 +36,17 @@ public class ProfessorVet {
         String setor;
         String dbString = "";
 
-        System.out.println("Digite a matrícula do professor:");
-        matricula = in.nextInt();
+        if (this.professores.size() == 0 && alunos.size() == 0) {
+            matricula = 0;
+        } else {
+            if (this.professores.size() > alunos.size()) {
+                matricula = this.professores.get(this.professores.size() - 1).getMatricula() + 1;
+            } else {
+                matricula = alunos.get(alunos.size() - 1).getMatricula() + 1;
+            }
+        }
 
         System.out.println("Digite o nome do professor:");
-        in.nextLine();
         nome = in.nextLine();
 
         System.out.println("Digite endereço do professor:");
@@ -68,6 +73,15 @@ public class ProfessorVet {
         ManipulaArquivo.escritor("./professores.csv", dbString);
 
         System.out.println("Professor cadastrado com sucesso!");
+    }
+
+    public Professor getProfessorByMatricula(int matricula) {
+        for (int i = 0; i < this.professores.size(); i++) {
+            if (this.professores.get(i).getMatricula() == matricula) {
+                return this.professores.get(i);
+            }
+        }
+        return null;
     }
 
     public void relatar() {

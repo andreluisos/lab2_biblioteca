@@ -29,7 +29,7 @@ public class PeriodicoVet {
         }
     }
 
-    public void cadastrar() throws IOException {
+    public void cadastrar(List<Livro> livros) throws IOException {
         int codigo;
         String autores;
         String titulo;
@@ -38,11 +38,17 @@ public class PeriodicoVet {
         int issn;
         String dbString = "";
 
-        System.out.println("Digite o código do periódico:");
-        codigo = in.nextInt();
+        if (livros.size() == 0 && this.periodicos.size() == 0) {
+            codigo = 0;
+        } else {
+            if (this.periodicos.size() > livros.size()) {
+                codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
+            } else {
+                codigo = livros.get(livros.size() - 1).getCodigo() + 1;
+            }
+        }
 
         System.out.println("Digite os autores do periódico:");
-        in.nextLine();
         autores = in.nextLine();
 
         System.out.println("Digite título do periódico:");
