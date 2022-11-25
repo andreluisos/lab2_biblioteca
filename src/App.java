@@ -6,7 +6,6 @@ import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
-import biblioteca.ItemEmprestimo;
 import biblioteca.ItemEmprestimoVet;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
@@ -114,13 +113,13 @@ public class App {
                         escPrincipal = -1;
                         continue;
                     } else if (escSecundaria == 1) {
-                        professores.cadastrar();
+                        professores.cadastrar(alunos.getAlunos());
                     } else if (escSecundaria == 2) {
-                        alunos.cadastrar();
+                        alunos.cadastrar(professores.getProfessores());
                     } else if (escSecundaria == 3) {
-                        periodicos.cadastrar();
+                        periodicos.cadastrar(livros.getLivros());
                     } else if (escSecundaria == 4) {
-                        livros.cadastrar();
+                        livros.cadastrar(periodicos.getPeriodicos());
                     }
                 }
 
@@ -131,7 +130,7 @@ public class App {
                             livros.getLivros().size() == 0) {
                         System.out.print("Não há cadastros de items ou usuários no banco de dados!");
                     } else {
-                        emprestimos.cadastrar(codigoFuncionario);
+                        emprestimos.cadastrar(codigoFuncionario, professores.getProfessores(), alunos.getAlunos());
                         itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(), emprestimos.getEmprestimos());
                     }
                     escPrincipal = 1;

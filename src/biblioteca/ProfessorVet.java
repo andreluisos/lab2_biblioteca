@@ -28,7 +28,7 @@ public class ProfessorVet {
         }
     }
 
-    public void cadastrar() throws IOException {
+    public void cadastrar(List<Aluno> alunos) throws IOException {
         int matricula;
         String nome;
         String end;
@@ -36,10 +36,14 @@ public class ProfessorVet {
         String setor;
         String dbString = "";
 
-        if (this.professores.size() == 0) {
+        if (this.professores.size() == 0 && alunos.size() == 0) {
             matricula = 0;
         } else {
-            matricula = this.professores.get(this.professores.size() - 1).getMatricula() + 1;
+            if (this.professores.size() > alunos.size()) {
+                matricula = this.professores.get(this.professores.size() - 1).getMatricula() + 1;
+            } else {
+                matricula = alunos.get(alunos.size() - 1).getMatricula() + 1;
+            }
         }
 
         System.out.println("Digite o nome do professor:");

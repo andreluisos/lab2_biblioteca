@@ -28,7 +28,7 @@ public class EmprestimoVet {
         }
     }
 
-    public void cadastrar(int funcionario) throws IOException {
+    public void cadastrar(int funcionario, List<Professor> professores, List<Aluno> alunos) throws IOException {
         int codigo;
         int matriculaCliente;
         int matriculaFuncionario = funcionario;
