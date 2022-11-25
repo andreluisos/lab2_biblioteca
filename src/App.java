@@ -6,6 +6,8 @@ import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
+import biblioteca.ItemEmprestimo;
+import biblioteca.ItemEmprestimoVet;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
@@ -18,6 +20,7 @@ public class App {
     static File bancoPeriodicos = new File("./periodicos.csv");
     static File bancoLivros = new File("./livros.csv");
     static File bancoEmprestimos = new File("./emprestimos.csv");
+    static File bancoItemEmprestimos = new File("./itemEmprestimos.csv");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
@@ -26,6 +29,7 @@ public class App {
         PeriodicoVet periodicos = new PeriodicoVet();
         LivroVet livros = new LivroVet();
         EmprestimoVet emprestimos = new EmprestimoVet();
+        ItemEmprestimoVet itemEmprestimos = new ItemEmprestimoVet();
 
         if (bancoProfessores.exists()) {
             professores.ler(
@@ -50,6 +54,10 @@ public class App {
         if (bancoEmprestimos.exists()) {
             emprestimos.ler(
                     ManipulaArquivo.leitor("./emprestimos.csv"));
+        }
+        if (bancoItemEmprestimos.exists()) {
+            itemEmprestimos.ler(
+                    ManipulaArquivo.leitor("./itemEmprestimos.csv"));
         }
 
         boolean loggedIn = false;
@@ -124,6 +132,7 @@ public class App {
                         System.out.print("Não há cadastros de items ou usuários no banco de dados!");
                     } else {
                         emprestimos.cadastrar(codigoFuncionario);
+                        itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(), emprestimos.getEmprestimos());
                     }
                     escPrincipal = 1;
                 }

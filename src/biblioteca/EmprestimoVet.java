@@ -67,6 +67,10 @@ public class EmprestimoVet {
 
         System.out.println("Empréstimo cadastrado com sucesso!");
     }
+
+    public void devolução() {
+        
+    }
     
     public void relatar() {
         for (int i = 0; i < this.emprestimos.size(); i++) {
