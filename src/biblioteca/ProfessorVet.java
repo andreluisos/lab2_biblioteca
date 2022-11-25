@@ -26,7 +26,6 @@ public class ProfessorVet {
                                 valorComSplit[4]));
             }
         }
-        System.out.print(this.professores.toString());
     }
 
     public void cadastrar() throws IOException {
