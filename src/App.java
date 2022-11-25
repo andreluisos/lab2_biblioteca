@@ -1,4 +1,3 @@
-//TODO: Aparentemente, não está lendo do banco de dados corretamente.
 import java.io.File;
 
 import java.util.Scanner;
@@ -33,12 +32,16 @@ public class App {
                     ManipulaArquivo.leitor("./professores.csv"));
         }
         if (bancoAlunos.exists()) {
-            professores.ler(
+            alunos.ler(
                     ManipulaArquivo.leitor("./alunos.csv"));
         }
         if (bancoFuncionarios.exists()) {
             funcionarios.ler(
                     ManipulaArquivo.leitor("./funcionarios.csv"));
+        }
+        if (bancoLivros.exists()) {
+            livros.ler(
+                    ManipulaArquivo.leitor("./livros.csv"));
         }
         if (bancoPeriodicos.exists()) {
             periodicos.ler(
@@ -46,7 +49,7 @@ public class App {
         }
         if (bancoEmprestimos.exists()) {
             emprestimos.ler(
-                    ManipulaArquivo.leitor("./periodicos.csv"));
+                    ManipulaArquivo.leitor("./emprestimos.csv"));
         }
 
         boolean loggedIn = false;
