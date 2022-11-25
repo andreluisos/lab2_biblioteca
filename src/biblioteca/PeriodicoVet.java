@@ -38,11 +38,13 @@ public class PeriodicoVet {
         int issn;
         String dbString = "";
 
-        System.out.println("Digite o código do periódico:");
-        codigo = in.nextInt();
+        if (this.periodicos.size() == 0) {
+            codigo = 0;
+        } else {
+            codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
+        }
 
         System.out.println("Digite os autores do periódico:");
-        in.nextLine();
         autores = in.nextLine();
 
         System.out.println("Digite título do periódico:");

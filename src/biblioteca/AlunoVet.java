@@ -38,11 +38,13 @@ public class AlunoVet {
         double multa = 0;
         String dbString = "";
 
-        System.out.println("Digite a matrícula do aluno:");
-        matricula = in.nextInt();
+        if (this.alunos.size() == 0) {
+            matricula = 0;
+        } else {
+            matricula = this.alunos.get(this.alunos.size() - 1).getMatricula() + 1;
+        }
 
         System.out.println("Digite o nome do aluno:");
-        in.nextLine();
         nome = in.nextLine();
 
         System.out.println("Digite endereço do aluno:");

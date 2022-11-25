@@ -36,8 +36,11 @@ public class EmprestimoVet {
         String dataDevolucao;
         String dbString = "";
 
-        System.out.println("Digite código do empréstimo:");
-        codigo = in.nextInt();
+        if (this.emprestimos.size() == 0) {
+            codigo = 0;
+        } else {
+            codigo = this.emprestimos.get(this.emprestimos.size() - 1).getCodigo() + 1;
+        }
 
         System.out.println("Digite a matrícula do cliente:");
         matriculaCliente = in.nextInt();

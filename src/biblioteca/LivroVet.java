@@ -40,11 +40,13 @@ public class LivroVet {
         int issn;
         String dbString = "";
 
-        System.out.println("Digite o código do livro:");
-        codigo = in.nextInt();
+        if (this.livros.size() == 0) {
+            codigo = 0;
+        } else {
+            codigo = this.livros.get(this.livros.size() - 1).getCodigo() + 1;
+        }
 
         System.out.println("Digite os autores do livro:");
-        in.nextLine();
         autores = in.nextLine();
 
         System.out.println("Digite o título do livro:");
