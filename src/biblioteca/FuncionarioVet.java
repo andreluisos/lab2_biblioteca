@@ -117,6 +117,14 @@ public class FuncionarioVet {
         return autenticar;
     }
 
+    public Funcionario getFuncionarioByMatricula(int matricula) {
+        for (int i = 0; i < this.funcionarios.size(); i++) {
+            if (this.funcionarios.get(i).getMatricula() == matricula) {
+                return this.funcionarios.get(i);
+            }
+        }
+        return null;
+    }
     public void relatar() {
         for (int i = 0; i < this.funcionarios.size(); i++) {
             System.out.println(this.funcionarios.get(i).toString());

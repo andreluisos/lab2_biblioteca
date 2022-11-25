@@ -41,10 +41,10 @@ public class PeriodicoVet {
         if (livros.size() == 0 && this.periodicos.size() == 0) {
             codigo = 0;
         } else {
-            if (livros.size() > this.periodicos.size()) {
-                codigo = livros.get(livros.size() - 1).getCodigo() + 1;
-            } else {
+            if (this.periodicos.size() > livros.size()) {
                 codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
+            } else {
+                codigo = livros.get(livros.size() - 1).getCodigo() + 1;
             }
         }
 

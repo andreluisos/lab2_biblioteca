@@ -77,17 +77,18 @@ public class ItemEmprestimoVet {
         ManipulaArquivo.escritor("./itemEmprestimos.csv", dbString);
     }
 
-    public void devolução() {
-
-    }
-
     public void relatar() {
         for (int i = 0; i < this.itemEmprestimos.size(); i++) {
             System.out.println(this.itemEmprestimos.get(i).toString());
         }
     }
 
-    public ArrayList<ItemEmprestimo> getEmprestimos() {
+    public ArrayList<ItemEmprestimo> getItemEmprestimos() {
         return this.itemEmprestimos;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemEmprestimoVet [itemEmprestimos=" + itemEmprestimos + ", in=" + in + "]";
     }
 }

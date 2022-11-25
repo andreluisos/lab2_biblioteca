@@ -78,6 +78,15 @@ public class AlunoVet {
         System.out.println("Aluno cadastrado com sucesso!");
     }
 
+    public Aluno getAlunoByMatricula(int matricula) {
+        for (int i = 0; i < this.alunos.size(); i++) {
+            if (this.alunos.get(i).getMatricula() == matricula) {
+                return this.alunos.get(i);
+            }
+        }
+        return null;
+    }
+
     public void relatar() {
         for (int i = 0; i < this.alunos.size(); i++) {
             System.out.println(this.alunos.get(i).toString());

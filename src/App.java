@@ -1,5 +1,6 @@
 import java.io.File;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
@@ -7,6 +8,7 @@ import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
 import biblioteca.ItemEmprestimoVet;
+import biblioteca.Livro;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
@@ -131,7 +133,22 @@ public class App {
                         System.out.print("Não há cadastros de items ou usuários no banco de dados!");
                     } else {
                         emprestimos.cadastrar(codigoFuncionario, professores.getProfessores(), alunos.getAlunos());
-                        itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(), emprestimos.getEmprestimos());
+                        itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(),
+                                emprestimos.getEmprestimos());
+                    }
+                    escPrincipal = 1;
+                }
+
+                if (escPrincipal == 3) {
+                    for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
+                        System.out.println("Código do empréstimo: " 
+                        + emprestimos.getEmprestimos().get(i).getCodigo() + "\n" 
+                        + "=========\n"
+                        + "\tFuncionário responsável: " + funcionarios.getFuncionarioByMatricula(
+                            emprestimos.getEmprestimos().get(i).getMatriculaFuncionario()).getNome() + "\n"
+                        + "\tData do empréstimo: " + emprestimos.getEmprestimos().get(i).getDataEmprestimo() + "\n"
+                        + "\tData da devolução: " + emprestimos.getEmprestimos().get(i).getDataDevolucao() + "\n"
+                        );                  
                     }
                     escPrincipal = 1;
                 }
@@ -163,7 +180,7 @@ public class App {
                     } else if (escSecundaria == 6) {
                         emprestimos.relatar();
                     }
-                }                
+                }
             }
         }
         in.close();

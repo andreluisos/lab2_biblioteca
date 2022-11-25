@@ -75,6 +75,15 @@ public class ProfessorVet {
         System.out.println("Professor cadastrado com sucesso!");
     }
 
+    public Professor getProfessorByMatricula(int matricula) {
+        for (int i = 0; i < this.professores.size(); i++) {
+            if (this.professores.get(i).getMatricula() == matricula) {
+                return this.professores.get(i);
+            }
+        }
+        return null;
+    }
+
     public void relatar() {
         for (int i = 0; i < this.professores.size(); i++) {
             System.out.println(this.professores.get(i).toString());
