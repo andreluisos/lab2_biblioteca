@@ -46,7 +46,7 @@ public class LivroVet {
             if (this.livros.size() > periodicos.size()) {
                 codigo = this.livros.get(this.livros.size() - 1).getCodigo() + 1;
             } else {
-                codigo = periodicos.get(this.livros.size() - 1).getCodigo() + 1;
+                codigo = periodicos.get(periodicos.size() - 1).getCodigo() + 1;
             }
         }
 
@@ -81,9 +81,15 @@ public class LivroVet {
             dbString += this.livros.get(i).toDatabase() + "\n";
         }
 
-        ManipulaArquivo.escritor("./livros.csv", dbString);
+        this.saveToDB(livros);
+    }
 
-        System.out.println("Livro cadastrado com sucesso!");
+    public void saveToDB(ArrayList<Livro> livros) throws IOException {
+        String dbString = "";
+        for (int i = 0; i < this.livros.size(); i++) {
+            dbString += this.livros.get(i).toDatabase() + "\n";
+        }
+        ManipulaArquivo.escritor("./livros.csv", dbString);
     }
 
     public void relatar() {

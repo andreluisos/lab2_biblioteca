@@ -34,7 +34,6 @@ public class EmprestimoVet {
         int matriculaFuncionario = funcionario;
         String dataEmprestimo;
         String dataDevolucao;
-        String dbString = "";
 
         if (this.emprestimos.size() == 0) {
             codigo = 0;
@@ -59,17 +58,19 @@ public class EmprestimoVet {
                 dataEmprestimo,
                 dataDevolucao));
 
-        for (int i = 0; i < this.emprestimos.size(); i++) {
-            dbString += this.emprestimos.get(i).toDatabase() + "\n";
-        }
-
-        ManipulaArquivo.escritor("./emprestimos.csv", dbString);
-
-        System.out.println("Empréstimo cadastrado com sucesso!");
+        this.saveToDB(emprestimos);
     }
 
     public void devolução() {
-        
+
+    }
+    
+    public void saveToDB(ArrayList<Emprestimo> emprestimos) throws IOException {
+        String dbString = "";
+        for (int i = 0; i < this.emprestimos.size(); i++) {
+            dbString += this.emprestimos.get(i).toDatabase() + "\n";
+        }
+        ManipulaArquivo.escritor("./emprestimos.csv", dbString);
     }
     
     public void relatar() {

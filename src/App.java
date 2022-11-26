@@ -1,6 +1,4 @@
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 import biblioteca.ProfessorVet;
@@ -8,10 +6,12 @@ import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
 import biblioteca.FuncionarioVet;
 import biblioteca.ItemEmprestimoVet;
-import biblioteca.Livro;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class App {
     static Scanner in = new Scanner(System.in);
@@ -22,6 +22,7 @@ public class App {
     static File bancoLivros = new File("./livros.csv");
     static File bancoEmprestimos = new File("./emprestimos.csv");
     static File bancoItemEmprestimos = new File("./itemEmprestimos.csv");
+    static SimpleDateFormat data = new SimpleDateFormat("dd/MM/yyyy");
 
     public static void main(String[] args) throws Exception {
         ProfessorVet professores = new ProfessorVet();
@@ -141,14 +142,43 @@ public class App {
 
                 if (escPrincipal == 3) {
                     for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
-                        System.out.println("Código do empréstimo: " 
-                        + emprestimos.getEmprestimos().get(i).getCodigo() + "\n" 
-                        + "=========\n"
-                        + "\tFuncionário responsável: " + funcionarios.getFuncionarioByMatricula(
-                            emprestimos.getEmprestimos().get(i).getMatriculaFuncionario()).getNome() + "\n"
-                        + "\tData do empréstimo: " + emprestimos.getEmprestimos().get(i).getDataEmprestimo() + "\n"
-                        + "\tData da devolução: " + emprestimos.getEmprestimos().get(i).getDataDevolucao() + "\n"
-                        );                  
+                        String cliente;
+                        if (alunos.getAlunoByMatricula(i) != null) {
+                            cliente = alunos.getAlunoByMatricula(i).getNome();
+                        } else {
+                            cliente = professores.getProfessorByMatricula(i).getNome();
+                        }
+                        System.out.println("=========\n" + "Código do empréstimo: "
+                                + emprestimos.getEmprestimos().get(i).getCodigo() + "\n"
+                                + "\tFuncionário responsável: " + funcionarios.getFuncionarioByMatricula(
+                                        emprestimos.getEmprestimos().get(i).getMatriculaFuncionario()).getNome()
+                                + "\n"
+                                + "\tCliente: " + cliente + "\n"
+                                + "\tData do empréstimo: " + emprestimos.getEmprestimos().get(i).getDataEmprestimo()
+                                + "\n"
+                                + "\tData da devolução: " + emprestimos.getEmprestimos().get(i).getDataDevolucao()
+                                + "\n"
+                                + "=========\n");
+                    }
+                    System.out.print("\nDigite o código do empréstimo: ");
+                    int emprestimo = in.nextInt();
+                    
+                    for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
+                        if (emprestimo == emprestimos.getEmprestimos().get(i).getCodigo()) {
+                            if (data.parse(emprestimos.getEmprestimos().get(i).getDataDevolucao()).before(new Date())) {
+                                System.out.print(2);
+                                    if (alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i).getMatriculaCliente()) != null) {
+                                        alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i)
+                                                .getMatriculaCliente())
+                                                .setMulta(alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i)
+                                                        .getMatriculaCliente()).getMulta() + 2);
+                                    }
+                            }
+                            emprestimos.getEmprestimos().remove(i);
+                            itemEmprestimos.getItemEmprestimos().remove(i);
+                        } else {
+                            System.out.print("Código do empréstimo inválido!");
+                        }
                     }
                     escPrincipal = 1;
                 }
@@ -183,6 +213,13 @@ public class App {
                 }
             }
         }
+        emprestimos.saveToDB(emprestimos.getEmprestimos());
+        alunos.saveToDB(alunos.getAlunos());
+        professores.saveToDB(professores.getProfessores());
+        funcionarios.saveToDB(funcionarios.getFuncionarios());
+        itemEmprestimos.saveToDB(itemEmprestimos.getItemEmprestimos());
+        livros.saveToDB(livros.getLivros());
+        periodicos.saveToDB(periodicos.getPeriodicos());
         in.close();
     }
 }

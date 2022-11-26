@@ -69,13 +69,23 @@ public class AlunoVet {
                 curso,
                 multa));
 
+        this.saveToDB(alunos);
+    }
+
+    public void saveToDB(ArrayList<Aluno> alunos) throws IOException {
+        String dbString = "";
         for (int i = 0; i < this.alunos.size(); i++) {
             dbString += this.alunos.get(i).toDatabase() + "\n";
         }
-
         ManipulaArquivo.escritor("./alunos.csv", dbString);
+    }
 
-        System.out.println("Aluno cadastrado com sucesso!");
+    public void aplicarMulta(int matricula) {
+        for (int i = 0; i < this.alunos.size(); i++) {
+            if (this.alunos.get(i).getMatricula() == matricula) {
+                this.alunos.get(i).setMulta(this.alunos.get(i).getMulta() + 2);
+            }
+        }
     }
 
     public Aluno getAlunoByMatricula(int matricula) {

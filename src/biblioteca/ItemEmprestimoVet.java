@@ -32,13 +32,12 @@ public class ItemEmprestimoVet {
             List<Livro> livros, 
             List<Periodico> periodicos, 
             List<Emprestimo> emprestimos
-        ) throws IOException {
+    ) throws IOException {
         int codigoItem;
         int codigoEmprestimo = emprestimos.size() - 1;
         int codigoLivro;
         int codigoPeriodico;
         String dataDevolucao = emprestimos.get(emprestimos.size() - 1).getDataDevolucao();
-        String dbString = "";
 
         if (this.itemEmprestimos.size() == 0) {
             codigoItem = 0;
@@ -61,19 +60,23 @@ public class ItemEmprestimoVet {
                     System.out.println(periodicos.get(i).toString());
                 }
                 System.out.print("Escolha o código do periódico a ser emprestado: ");
-                codigoLivro= -1;
+                codigoLivro = -1;
                 codigoPeriodico = in.nextInt();
                 break;
             }
         }
 
         this.itemEmprestimos.add(new ItemEmprestimo(codigoItem, codigoEmprestimo, codigoLivro, codigoPeriodico,
-        dataDevolucao));
+                dataDevolucao));
 
+        this.saveToDB(itemEmprestimos);
+    }
+    
+    public void saveToDB(ArrayList<ItemEmprestimo> itemEmprestimos) throws IOException {
+        String dbString = "";
         for (int i = 0; i < this.itemEmprestimos.size(); i++) {
             dbString += this.itemEmprestimos.get(i).toDatabase() + "\n";
         }
-
         ManipulaArquivo.escritor("./itemEmprestimos.csv", dbString);
     }
 

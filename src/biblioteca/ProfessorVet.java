@@ -66,13 +66,15 @@ public class ProfessorVet {
                 dataIngresso,
                 setor));
 
+        this.saveToDB(professores);
+    }
+
+    public void saveToDB(ArrayList<Professor> professores) throws IOException {
+        String dbString = "";
         for (int i = 0; i < this.professores.size(); i++) {
             dbString += this.professores.get(i).toDatabase() + "\n";
         }
-
         ManipulaArquivo.escritor("./professores.csv", dbString);
-
-        System.out.println("Professor cadastrado com sucesso!");
     }
 
     public Professor getProfessorByMatricula(int matricula) {

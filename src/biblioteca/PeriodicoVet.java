@@ -71,13 +71,15 @@ public class PeriodicoVet {
                 fatorImpacto,
                 issn));
 
+        this.saveToDB(periodicos);
+    }
+
+    public void saveToDB(ArrayList<Periodico> periodicos) throws IOException {
+        String dbString = "";
         for (int i = 0; i < this.periodicos.size(); i++) {
             dbString += this.periodicos.get(i).toDatabase() + "\n";
         }
-
         ManipulaArquivo.escritor("./periodicos.csv", dbString);
-
-        System.out.println("Periódico cadastrado com sucesso!");
     }
 
     public void relatar() {

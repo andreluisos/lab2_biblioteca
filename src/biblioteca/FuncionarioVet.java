@@ -75,13 +75,15 @@ public class FuncionarioVet {
                 login,
                 senha));
 
+        this.saveToDB(funcionarios);
+    }
+
+    public void saveToDB(ArrayList<Funcionario> funcionarios) throws IOException {
+        String dbString = "";
         for (int i = 0; i < this.funcionarios.size(); i++) {
             dbString += this.funcionarios.get(i).toDatabase() + "\n";
         }
-
         ManipulaArquivo.escritor("./funcionarios.csv", dbString);
-
-        System.out.println("Funcionario cadastrado com sucesso!");
     }
 
     public ArrayList<Funcionario> getFuncionarios() {
@@ -98,7 +100,7 @@ public class FuncionarioVet {
             login = in.nextLine();
 
             for (int i = 0; i < this.funcionarios.size(); i++) {
-                if (this.funcionarios.get(i).getNome().equals(login)) {
+                if (this.funcionarios.get(i).getLogin().equals(login)) {
                     System.out.println("Digite o senha do funcionário:");
                     senha = in.nextLine();
                     if (this.funcionarios.get(i).getSenha().equals(senha)) {
@@ -125,6 +127,7 @@ public class FuncionarioVet {
         }
         return null;
     }
+
     public void relatar() {
         for (int i = 0; i < this.funcionarios.size(); i++) {
             System.out.println(this.funcionarios.get(i).toString());
