@@ -6,10 +6,10 @@ public class Livro {
     private String titulo;
     private String editora;
     private char tipo;
-    private String ano;
+    private int ano;
     private int issn;
 
-    public Livro(int codigo, String autores, String titulo, String editora, char tipo, String ano, int issn) {
+    public Livro(int codigo, String autores, String titulo, String editora, char tipo, int ano, int issn) {
         this.codigo = codigo;
         this.autores = autores;
         this.titulo = titulo;
@@ -59,11 +59,11 @@ public class Livro {
         this.tipo = tipo;
     }
 
-    public String getAno() {
+    public int getAno() {
         return ano;
     }
 
-    public void setAno(String ano) {
+    public void setAno(int ano) {
         this.ano = ano;
     }
 

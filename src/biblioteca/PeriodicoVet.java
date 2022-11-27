@@ -64,10 +64,22 @@ public class PeriodicoVet {
         }
 
         System.out.println("Digite o fator de impacto do periódico:");
-        fatorImpacto = in.nextInt();
+        if (in.hasNextInt()) {
+            fatorImpacto = in.nextInt();
+        } else {
+            fatorImpacto = 0;
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
 
         System.out.println("Digite o ISSN do periódico:");
-        issn = in.nextInt();
+        if (in.hasNextInt()) {
+            issn = in.nextInt();
+        } else {
+            issn = 0;
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
 
         this.periodicos.add(new Periodico(
                 codigo,

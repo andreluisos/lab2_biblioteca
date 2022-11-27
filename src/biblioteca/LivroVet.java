@@ -24,7 +24,7 @@ public class LivroVet {
                                 valorComSplit[2],
                                 valorComSplit[3],
                                 valorComSplit[4].charAt(0),
-                                valorComSplit[5],
+                                Integer.parseInt(valorComSplit[5]),
                                 Integer.parseInt(valorComSplit[6])));
             }
         }
@@ -36,7 +36,7 @@ public class LivroVet {
         String titulo;
         String editora;
         char tipo;
-        String ano;
+        int ano;
         int issn;
 
         if (periodicos.size() == 0 && this.livros.size() == 0) {
@@ -61,11 +61,24 @@ public class LivroVet {
         tipo = 'L';
 
         System.out.println("Digite o ano do livro:");
-        ano = in.next();
+        if (in.hasNextInt()) {
+            ano = in.nextInt();
+        } else {
+            ano = 0;
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
+        
 
         System.out.println("Digite o ISSN do livro:");
-        issn = in.nextInt();
-
+        if (in.hasNextInt()) {
+            issn = in.nextInt();
+        } else {
+            issn = 0;
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
+        
         this.livros.add(new Livro(
                 codigo,
                 autores,

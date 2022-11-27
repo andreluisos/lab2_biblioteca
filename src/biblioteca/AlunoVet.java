@@ -1,6 +1,7 @@
 package biblioteca;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class AlunoVet {
     private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
     Scanner in = new Scanner(System.in);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public void ler(List<String> linhas) {
         int numLinhas = linhas.size();
@@ -31,10 +33,10 @@ public class AlunoVet {
 
     public void cadastrar(List<Professor> professores) throws IOException {
         int matricula;
-        String nome;
-        String end;
-        String dataIngresso;
-        String curso;
+        String nome = "";
+        String end = "";
+        String dataIngresso = "";
+        String curso = "";
         double multa = 0;
 
         if (professores.size() == 0 && this.alunos.size() == 0) {
@@ -55,11 +57,17 @@ public class AlunoVet {
 
         System.out.println("Digite data de ingresso do aluno (dd/mm/aaaa):");
         dataIngresso = in.next();
-
+        try {
+            dateFormat.format(dataIngresso);
+        } catch (Exception e) {
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
+        
+        
         System.out.println("Digite o curso do aluno:");
-        in.nextLine();
         curso = in.nextLine();
-
+        
         this.alunos.add(new Aluno(
                 matricula,
                 nome,

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class EmprestimoVet {
     private ArrayList<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
     Scanner in = new Scanner(System.in);
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     public void ler(List<String> linhas) {
         int numLinhas = linhas.size();
@@ -36,8 +37,8 @@ public class EmprestimoVet {
         int matriculaFuncionario = funcionario;
         String dataEmprestimo;
         String dataDevolucao;
-        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
-        dataEmprestimo = formataData.format(new Date());
+        dataEmprestimo = dateFormat.format(new Date());
+        
         if (this.emprestimos.size() == 0) {
             codigo = 0;
         } else {
@@ -45,11 +46,24 @@ public class EmprestimoVet {
         }
 
         System.out.println("Digite a matrícula do cliente:");
-        matriculaCliente = in.nextInt();
+        if (in.hasNextInt()) {
+            matriculaCliente = in.nextInt();
+        } else {
+            matriculaCliente = 0;
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
+        
 
         System.out.println("Digite a data da devolução:");
         in.nextLine();
         dataDevolucao = in.nextLine();
+        try {
+            dateFormat.format(dataDevolucao);
+        } catch (Exception e) {
+            System.out.println("Erro de IO");
+            System.exit(0);
+        }
 
         this.emprestimos.add(new Emprestimo(
                 codigo,
