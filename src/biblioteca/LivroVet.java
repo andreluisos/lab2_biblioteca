@@ -38,7 +38,6 @@ public class LivroVet {
         char tipo;
         String ano;
         int issn;
-        String dbString = "";
 
         if (periodicos.size() == 0 && this.livros.size() == 0) {
             codigo = 0;
@@ -76,10 +75,6 @@ public class LivroVet {
                 tipo,
                 ano,
                 issn));
-
-        for (int i = 0; i < this.livros.size(); i++) {
-            dbString += this.livros.get(i).toDatabase() + "\n";
-        }
 
         this.saveToDB(livros);
     }

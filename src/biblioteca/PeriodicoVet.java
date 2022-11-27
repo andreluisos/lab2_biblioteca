@@ -36,7 +36,6 @@ public class PeriodicoVet {
         char tipo;
         int fatorImpacto;
         int issn;
-        String dbString = "";
 
         if (livros.size() == 0 && this.periodicos.size() == 0) {
             codigo = 0;

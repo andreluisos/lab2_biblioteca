@@ -39,8 +39,6 @@ public class FuncionarioVet {
         String login;
         String senha;
 
-        String dbString = "";
-
         if (this.funcionarios.size() == 0) {
             matricula = 0;
         } else {

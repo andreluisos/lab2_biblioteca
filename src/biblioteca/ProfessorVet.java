@@ -34,7 +34,6 @@ public class ProfessorVet {
         String end;
         String dataIngresso;
         String setor;
-        String dbString = "";
 
         if (this.professores.size() == 0 && alunos.size() == 0) {
             matricula = 0;

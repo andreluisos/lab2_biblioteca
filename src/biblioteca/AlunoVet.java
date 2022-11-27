@@ -36,7 +36,6 @@ public class AlunoVet {
         String dataIngresso;
         String curso;
         double multa = 0;
-        String dbString = "";
 
         if (professores.size() == 0 && this.alunos.size() == 0) {
             matricula = 0;
@@ -78,14 +77,6 @@ public class AlunoVet {
             dbString += this.alunos.get(i).toDatabase() + "\n";
         }
         ManipulaArquivo.escritor("./alunos.csv", dbString);
-    }
-
-    public void aplicarMulta(int matricula) {
-        for (int i = 0; i < this.alunos.size(); i++) {
-            if (this.alunos.get(i).getMatricula() == matricula) {
-                this.alunos.get(i).setMulta(this.alunos.get(i).getMulta() + 2);
-            }
-        }
     }
 
     public Aluno getAlunoByMatricula(int matricula) {

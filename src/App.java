@@ -9,7 +9,7 @@ import biblioteca.ItemEmprestimoVet;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -162,17 +162,17 @@ public class App {
                     }
                     System.out.print("\nDigite o código do empréstimo: ");
                     int emprestimo = in.nextInt();
-                    
+
                     for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
                         if (emprestimo == emprestimos.getEmprestimos().get(i).getCodigo()) {
                             if (data.parse(emprestimos.getEmprestimos().get(i).getDataDevolucao()).before(new Date())) {
-                                System.out.print(2);
-                                    if (alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i).getMatriculaCliente()) != null) {
-                                        alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i)
-                                                .getMatriculaCliente())
-                                                .setMulta(alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i)
-                                                        .getMatriculaCliente()).getMulta() + 2);
-                                    }
+                                if (alunos.getAlunoByMatricula(
+                                        emprestimos.getEmprestimos().get(i).getMatriculaCliente()) != null) {
+                                    int matriculaAluno = emprestimos.getEmprestimos().get(i)
+                                            .getMatriculaCliente();
+                                    alunos.getAlunoByMatricula(matriculaAluno)
+                                            .setMulta(alunos.getAlunoByMatricula(matriculaAluno).getMulta() + 2);
+                                }
                             }
                             emprestimos.getEmprestimos().remove(i);
                             itemEmprestimos.getItemEmprestimos().remove(i);
@@ -208,7 +208,7 @@ public class App {
                     } else if (escSecundaria == 5) {
                         periodicos.relatar();
                     } else if (escSecundaria == 6) {
-                        emprestimos.relatar();
+                        System.out.print("Código do empréstimo inválido!");
                     }
                 }
             }
