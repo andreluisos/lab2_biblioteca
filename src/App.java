@@ -126,16 +126,21 @@ public class App {
                         }
                     }
                 } else if (escPrincipal == 2) {
-                    //TODO: somente permitir empréstimo se não tiver multa.
                     if (professores.getProfessores().size() == 0 &&
                             alunos.getAlunos().size() == 0 &&
                             periodicos.getPeriodicos().size() == 0 &&
                             livros.getLivros().size() == 0) {
                         System.out.print("Não há cadastros de items ou usuários no banco de dados!");
                     } else {
-                        emprestimos.cadastrar(codigoFuncionario, professores.getProfessores(), alunos.getAlunos());
-                        itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(),
-                                emprestimos.getEmprestimos());
+                        boolean emprestimoCadastrado = emprestimos.cadastrar(
+                                codigoFuncionario, professores.getProfessores(), alunos.getAlunos());
+                        if (emprestimoCadastrado) {
+                            itemEmprestimos.cadastrar(livros.getLivros(), periodicos.getPeriodicos(),
+                                    emprestimos.getEmprestimos());
+                        } else {
+                            escPrincipal = -1;
+                            continue;
+                        }
                     }
                     escPrincipal = 1;
                 } else if (escPrincipal == 3) {
