@@ -208,7 +208,15 @@ public class App {
                     } else if (escSecundaria == 5) {
                         periodicos.relatar();
                     } else if (escSecundaria == 6) {
-                        System.out.print("Código do empréstimo inválido!");
+                        emprestimos.relatar();
+                    } else if (escSecundaria == 7) {
+                        System.out.print("Digite a matrícula do aluno: ");
+                        int matricula = in.nextInt();
+                        if (alunos.getAlunoByMatricula(matricula) != null) {
+                            System.out.println(alunos.getAlunoByMatricula(
+                                    matricula).getNome() + " possui uma multa de " + alunos
+                                    .getAlunoByMatricula(matricula).getMulta() + " reais.");
+                        }
                     }
                 }
             }
