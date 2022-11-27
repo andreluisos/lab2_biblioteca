@@ -45,7 +45,15 @@ public class EmprestimoVet {
             codigo = this.emprestimos.get(this.emprestimos.size() - 1).getCodigo() + 1;
         }
 
-        System.out.println("Digite a matrícula do cliente:");
+        for (int i = 0; i < alunos.size(); i++) {
+            System.out.println(alunos.get(i).toString());
+        }
+
+        for (int i = 0; i < professores.size(); i++) {
+            System.out.println(professores.get(i).toString());
+        }
+
+        System.out.println("\nDigite a matrícula do cliente:");
         if (in.hasNextInt()) {
             matriculaCliente = in.nextInt();
         } else {
