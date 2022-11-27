@@ -1,7 +1,9 @@
 package biblioteca;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,6 +36,7 @@ public class EmprestimoVet {
         int matriculaFuncionario = funcionario;
         String dataEmprestimo;
         String dataDevolucao;
+        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
 
         if (this.emprestimos.size() == 0) {
             codigo = 0;
@@ -43,10 +46,8 @@ public class EmprestimoVet {
 
         System.out.println("Digite a matrícula do cliente:");
         matriculaCliente = in.nextInt();
-
-        System.out.println("Digite a data do empréstimo:");
-        in.nextLine();
-        dataEmprestimo = in.nextLine();
+        
+        dataEmprestimo = formataData.format(new Date());
 
         System.out.println("Digite a data da devolução:");
         dataDevolucao = in.nextLine();
