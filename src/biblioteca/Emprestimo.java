@@ -64,11 +64,4 @@ public class Emprestimo {
                 + ";" + dataDevolucao;
     }
 
-    @Override
-    public String toString() {
-        return "Emprestimo [codigo=" + codigo + ", matriculaCliente=" + matriculaCliente + ", matriculaFuncionario="
-                + matriculaFuncionario + ", dataEmprestimo=" + dataEmprestimo + ", dataDevolucao=" + dataDevolucao
-                + "]";
-    }
-
 }

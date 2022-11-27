@@ -102,9 +102,7 @@ public class App {
 
                 if (escPrincipal == 0) {
                     break;
-                }
-
-                if (escPrincipal == 1) {
+                } else if (escPrincipal == 1) {
                     System.out.println("MENU DE CADASTROS\n" +
                             "1- CADASTRAR PROFESSOR\n" +
                             "2- CADASTRAR ALUNO\n" +
@@ -124,9 +122,7 @@ public class App {
                     } else if (escSecundaria == 4) {
                         livros.cadastrar(periodicos.getPeriodicos());
                     }
-                }
-
-                if (escPrincipal == 2) {
+                } else if (escPrincipal == 2) {
                     if (professores.getProfessores().size() == 0 &&
                             alunos.getAlunos().size() == 0 &&
                             periodicos.getPeriodicos().size() == 0 &&
@@ -138,9 +134,7 @@ public class App {
                                 emprestimos.getEmprestimos());
                     }
                     escPrincipal = 1;
-                }
-
-                if (escPrincipal == 3) {
+                } else if (escPrincipal == 3) {
                     for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
                         String cliente;
                         if (alunos.getAlunoByMatricula(i) != null) {
@@ -181,9 +175,7 @@ public class App {
                         }
                     }
                     escPrincipal = 1;
-                }
-
-                if (escPrincipal == 4) {
+                } else if (escPrincipal == 4) {
                     System.out.println("MENU DE RELATÓRIOS\n" +
                             "1- ALUNOS CADASTRADOS\n" +
                             "2- PROFESSORES CADASTRADOS\n" +
@@ -218,6 +210,8 @@ public class App {
                                     .getAlunoByMatricula(matricula).getMulta() + " reais.");
                         }
                     }
+                } else {
+                    escPrincipal = -1;
                 }
             }
         }

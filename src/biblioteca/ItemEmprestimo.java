@@ -63,13 +63,5 @@ public class ItemEmprestimo {
                 + ";" + codigoPeriodico
                 + ";" + dataDevolucao;
     }
-
-    @Override
-    public String toString() {
-        return codigoItem
-                + ";" + codigoEmprestimo
-                + ";" + codigoLivro
-                + ";" + codigoPeriodico
-                + ";" + dataDevolucao;
-    }
+    
 }
