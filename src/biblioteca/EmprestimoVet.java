@@ -37,7 +37,7 @@ public class EmprestimoVet {
         String dataEmprestimo;
         String dataDevolucao;
         SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
-
+        dataEmprestimo = formataData.format(new Date());
         if (this.emprestimos.size() == 0) {
             codigo = 0;
         } else {
@@ -46,10 +46,9 @@ public class EmprestimoVet {
 
         System.out.println("Digite a matrícula do cliente:");
         matriculaCliente = in.nextInt();
-        
-        dataEmprestimo = formataData.format(new Date());
 
         System.out.println("Digite a data da devolução:");
+        in.nextLine();
         dataDevolucao = in.nextLine();
 
         this.emprestimos.add(new Emprestimo(
@@ -60,10 +59,6 @@ public class EmprestimoVet {
                 dataDevolucao));
 
         this.saveToDB(emprestimos);
-    }
-
-    public void devolução() {
-
     }
     
     public void saveToDB(ArrayList<Emprestimo> emprestimos) throws IOException {
