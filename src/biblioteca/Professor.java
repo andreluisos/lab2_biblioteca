@@ -63,4 +63,10 @@ public class Professor {
                 + ";" + setor;
     }
 
+    @Override
+    public String toString() {
+        return "Professor [matricula=" + matricula + ", nome=" + nome + ", end=" + end + ", dataIngresso="
+                + dataIngresso + ", setor=" + setor + "]";
+    }
+
 }

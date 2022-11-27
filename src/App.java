@@ -136,11 +136,13 @@ public class App {
                     escPrincipal = 1;
                 } else if (escPrincipal == 3) {
                     for (int i = 0; i < emprestimos.getEmprestimos().size(); i++) {
-                        String cliente;
-                        if (alunos.getAlunoByMatricula(i) != null) {
-                            cliente = alunos.getAlunoByMatricula(i).getNome();
+                        String cliente = "";
+                        if (alunos.getAlunoByMatricula(emprestimos.getEmprestimos().get(i).getMatriculaCliente()) != null) {
+                            cliente = alunos.getAlunoByMatricula(
+                                    emprestimos.getEmprestimos().get(i).getMatriculaCliente()).getNome();
                         } else {
-                            cliente = professores.getProfessorByMatricula(i).getNome();
+                            cliente = professores.getProfessorByMatricula(
+                                    emprestimos.getEmprestimos().get(i).getMatriculaCliente()).getNome();
                         }
                         System.out.println("=========\n" + "Código do empréstimo: "
                                 + emprestimos.getEmprestimos().get(i).getCodigo() + "\n"

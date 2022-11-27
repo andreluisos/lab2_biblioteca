@@ -63,5 +63,10 @@ public class ItemEmprestimo {
                 + ";" + codigoPeriodico
                 + ";" + dataDevolucao;
     }
-    
+
+    @Override
+    public String toString() {
+        return "ItemEmprestimo [codigoItem=" + codigoItem + ", codigoEmprestimo=" + codigoEmprestimo + ", codigoLivro="
+                + codigoLivro + ", codigoPeriodico=" + codigoPeriodico + ", dataDevolucao=" + dataDevolucao + "]";
+    }
 }
