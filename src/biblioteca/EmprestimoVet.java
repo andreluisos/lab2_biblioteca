@@ -75,7 +75,7 @@ public class EmprestimoVet {
         in.nextLine();
         dataDevolucao = in.nextLine();
         try {
-            dateFormat.format(dataDevolucao);
+            dateFormat.parse(dataDevolucao);
         } catch (Exception e) {
             System.out.println("Erro de IO");
             System.exit(0);

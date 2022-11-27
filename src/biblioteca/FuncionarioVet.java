@@ -56,7 +56,7 @@ public class FuncionarioVet {
         System.out.println("Digite data de ingresso do funcionário (dd/mm/aaaa):");
         dataIngresso = in.next();
         try {
-            dateFormat.format(dataIngresso);
+            dateFormat.parse(dataIngresso);
         } catch (Exception e) {
             System.out.println("Erro de IO");
             System.exit(0);
