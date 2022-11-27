@@ -58,8 +58,7 @@ public class LivroVet {
         System.out.println("Digite a editora do livro:");
         editora = in.nextLine();
 
-        System.out.println("Digite o tipo do livro:");
-        tipo = in.next().charAt(0);
+        tipo = 'P';
 
         System.out.println("Digite o ano do livro:");
         ano = in.next();

@@ -106,8 +106,7 @@ public class App {
                     System.out.println("MENU DE CADASTROS\n" +
                             "1- CADASTRAR PROFESSOR\n" +
                             "2- CADASTRAR ALUNO\n" +
-                            "3- CADASTRAR PERIÓDICO\n" +
-                            "4- CADASTRAR LIVRO\n" +
+                            "3- CADASTRAR LIVRO\n" +
                             "0- VOLTAR AO MENU PRINCIPAL");
                     escSecundaria = in.nextInt();
                     if (escSecundaria == 0) {
@@ -118,11 +117,16 @@ public class App {
                     } else if (escSecundaria == 2) {
                         alunos.cadastrar(professores.getProfessores());
                     } else if (escSecundaria == 3) {
-                        periodicos.cadastrar(livros.getLivros());
-                    } else if (escSecundaria == 4) {
-                        livros.cadastrar(periodicos.getPeriodicos());
+                        System.out.println("1- Livro\n2- Periódico");
+                        System.out.println("Digite o tipo de item a ser cadastrado: ");
+                        if (in.nextInt() == 1) {
+                            livros.cadastrar(periodicos.getPeriodicos());
+                        } else {
+                            periodicos.cadastrar(livros.getLivros());
+                        }
                     }
                 } else if (escPrincipal == 2) {
+                    //TODO: somente permitir empréstimo se não tiver multa.
                     if (professores.getProfessores().size() == 0 &&
                             alunos.getAlunos().size() == 0 &&
                             periodicos.getPeriodicos().size() == 0 &&

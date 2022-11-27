@@ -53,8 +53,15 @@ public class PeriodicoVet {
         System.out.println("Digite título do periódico:");
         titulo = in.nextLine();
 
-        System.out.println("Digite o tipo do periódico:");
-        tipo = in.next().charAt(0);
+        System.out.println("Tipos de periódico:\n1- Conferências\n2- Revistas\n3- Periódicos");
+        int tipoInt = in.nextInt();
+        if (tipoInt == 1) {
+            tipo = 'C';
+        } else if (tipoInt == 1) {
+            tipo = 'R';
+        } else {
+            tipo = 'P';
+        }
 
         System.out.println("Digite o fator de impacto do periódico:");
         fatorImpacto = in.nextInt();
