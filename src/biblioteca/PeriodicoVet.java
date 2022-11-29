@@ -81,6 +81,8 @@ public class PeriodicoVet {
             System.exit(0);
         }
 
+        in.nextLine();
+
         this.periodicos.add(new Periodico(
                 codigo,
                 autores,

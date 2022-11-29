@@ -63,11 +63,11 @@ public class AlunoVet {
             System.out.println("Erro de IO");
             System.exit(0);
         }
-        
-        
+
         System.out.println("Digite o curso do aluno:");
+        in.nextLine();
         curso = in.nextLine();
-        
+
         this.alunos.add(new Aluno(
                 matricula,
                 nome,

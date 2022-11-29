@@ -68,7 +68,6 @@ public class LivroVet {
             System.out.println("Erro de IO");
             System.exit(0);
         }
-        
 
         System.out.println("Digite o ISSN do livro:");
         if (in.hasNextInt()) {
@@ -78,7 +77,9 @@ public class LivroVet {
             System.out.println("Erro de IO");
             System.exit(0);
         }
-        
+
+        in.nextLine();
+
         this.livros.add(new Livro(
                 codigo,
                 autores,

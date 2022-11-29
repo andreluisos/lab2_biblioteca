@@ -37,7 +37,7 @@ public class ProfessorVet {
         String dataIngresso;
         String setor;
 
-        if (this.professores.size() == 0 && alunos.size() == 0) {
+        if (alunos.size() == 0 && this.professores.size()== 0) {
             matricula = 0;
         } else {
             if (this.professores.size() > alunos.size()) {
