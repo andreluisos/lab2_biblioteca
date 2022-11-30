@@ -42,7 +42,15 @@ public class AlunoVet {
         if (professores.size() == 0 && this.alunos.size() == 0) {
             matricula = 0;
         } else {
-            if (professores.size() > this.alunos.size()) {
+            if (professores.size() > 0 && this.alunos.size() > 0) {
+                if (professores.get(professores.size() - 1).getMatricula() > this.alunos.get(
+                        this.alunos.size() - 1)
+                        .getMatricula()) {
+                    matricula = professores.get(professores.size() - 1).getMatricula() + 1;
+                } else {
+                    matricula = this.alunos.get(this.alunos.size() - 1).getMatricula() + 1;
+                }
+            } else if (professores.size() > 0 && this.alunos.size() == 0) {
                 matricula = professores.get(professores.size() - 1).getMatricula() + 1;
             } else {
                 matricula = this.alunos.get(this.alunos.size() - 1).getMatricula() + 1;

@@ -37,13 +37,21 @@ public class PeriodicoVet {
         int fatorImpacto;
         int issn;
 
-        if (livros.size() == 0 && this.periodicos.size() == 0) {
+        if (this.periodicos.size() == 0 && livros.size() == 0) {
             codigo = 0;
         } else {
-            if (this.periodicos.size() > livros.size()) {
-                codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
-            } else {
+            if (livros.size() > 0 && this.periodicos.size() > 0) {
+                if (livros.get(livros.size() - 1).getCodigo() > this.periodicos.get(
+                        periodicos.size() - 1)
+                        .getCodigo()) {
+                    codigo = livros.get(livros.size() - 1).getCodigo() + 1;
+                } else {
+                    codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
+                }
+            } else if (livros.size() > 0 && this.periodicos.size() == 0) {
                 codigo = livros.get(livros.size() - 1).getCodigo() + 1;
+            } else {
+                codigo = this.periodicos.get(this.periodicos.size() - 1).getCodigo() + 1;
             }
         }
 

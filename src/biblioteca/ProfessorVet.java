@@ -37,10 +37,17 @@ public class ProfessorVet {
         String dataIngresso;
         String setor;
 
-        if (alunos.size() == 0 && this.professores.size()== 0) {
+        if (alunos.size() == 0 && this.professores.size() == 0) {
             matricula = 0;
         } else {
-            if (this.professores.size() > alunos.size()) {
+            if (this.professores.size() > 0 && alunos.size() > 0) {
+                if (this.professores.get(this.professores.size() - 1).getMatricula() > alunos.get(alunos.size() - 1)
+                        .getMatricula()) {
+                    matricula = this.professores.get(this.professores.size() - 1).getMatricula() + 1;
+                } else {
+                    matricula = alunos.get(alunos.size() - 1).getMatricula() + 1;
+                }
+            } else if (this.professores.size() > 0 && alunos.size() == 0) {
                 matricula = this.professores.get(this.professores.size() - 1).getMatricula() + 1;
             } else {
                 matricula = alunos.get(alunos.size() - 1).getMatricula() + 1;

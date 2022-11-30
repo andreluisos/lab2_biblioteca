@@ -4,11 +4,11 @@ import java.util.Scanner;
 import biblioteca.ProfessorVet;
 import biblioteca.AlunoVet;
 import biblioteca.EmprestimoVet;
-import biblioteca.FuncionarioVet;
-import biblioteca.ItemEmprestimoVet;
 import biblioteca.LivroVet;
 import biblioteca.ManipulaArquivo;
 import biblioteca.PeriodicoVet;
+import biblioteca.FuncionarioVet;
+import biblioteca.ItemEmprestimoVet;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

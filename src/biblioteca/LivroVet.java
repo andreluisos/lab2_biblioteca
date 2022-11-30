@@ -42,7 +42,14 @@ public class LivroVet {
         if (periodicos.size() == 0 && this.livros.size() == 0) {
             codigo = 0;
         } else {
-            if (this.livros.size() > periodicos.size()) {
+            if (this.livros.size() > 0 && periodicos.size() > 0) {
+                if (this.livros.get(this.livros.size() - 1).getCodigo() > periodicos.get(periodicos.size() - 1)
+                        .getCodigo()) {
+                    codigo = this.livros.get(this.livros.size() - 1).getCodigo() + 1;
+                } else {
+                    codigo = periodicos.get(periodicos.size() - 1).getCodigo() + 1;
+                }
+            } else if (this.livros.size() > 0 && periodicos.size() == 0) {
                 codigo = this.livros.get(this.livros.size() - 1).getCodigo() + 1;
             } else {
                 codigo = periodicos.get(periodicos.size() - 1).getCodigo() + 1;
